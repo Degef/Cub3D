@@ -1,33 +1,39 @@
 NAME        = cub3D
 
+LIBFT       = ./libft/libft.a 
+MLX = ./mlx/
 FILES = cub3D.c 
-
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -g
 sanitize    = -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 RM          = rm -f
-
 OBJS		= $(FILES:.c=.o)
 
 all: $(NAME)
 
 %.o : %.c
-	@cc $(CFLAGS) -c $< -o $@
+	@cc $(CFLAGS) -Imlx -c $< -o $@
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJS)
+	@$(MAKE) -C $(MLX)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) 
                                                          
+$(LIBFT) :
+	@make -sC ./libft
+
 clean:
 	@$(RM) $(OBJS)
+	@make clean -sC ./libft
 
 fclean: clean
 	@$(RM) $(NAME)
+	@make fclean -sC ./libft
 
 re: fclean all
 
 push: fclean
 	git add .
-	git commit -m "Updated on $(shell date +'%Y-%m-%d %H:%M:%S') by $(shell whoami)"
+	git commit -m "Updated on $(shell date +'%Y-%m-%d %H:%M:%S') by $(shell whoami) final"
 	git push -u origin master
 
 .PHONY: all clean fclean re
