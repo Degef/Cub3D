@@ -1,0 +1,6 @@
+{
+    "editor.language.colorizedBracketPairs": [],
+    "editor.tokenColorCustomizations": {
+        "comments": "#554f4f"
+    }
+}
