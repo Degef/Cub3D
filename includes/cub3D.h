@@ -13,6 +13,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include "../mlx/mlx.h"
+# include "../mlx_linux/mlx.h"
 
 typedef struct	s_parse
 {
