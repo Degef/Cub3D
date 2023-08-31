@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:40:29 by Degef             #+#    #+#             */
-/*   Updated: 2023/01/19 13:18:47 by Degef            ###   ########.fr       */
+/*   Updated: 2023/08/31 14:27:24 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*read_to_main_str(int fd, char *main_str)
 	return (main_str);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, char **result)
 {
 	char		*line;
 	static char	*main_str;
@@ -48,5 +48,6 @@ char	*get_next_line(int fd)
 		return (0);
 	line = ft_get_line(main_str);
 	main_str = ft_new_main_str(main_str);
+	*result = line;
 	return (line);
 }

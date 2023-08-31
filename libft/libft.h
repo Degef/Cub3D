@@ -89,7 +89,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 //get next line
 char	*ft_new_main_str(char *main_str);
 char	*ft_get_line(char *main_str);
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, char **result);
 char	*read_to_main_str(int fd, char *main_str);
 
 #endif

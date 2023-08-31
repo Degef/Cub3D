@@ -2,7 +2,7 @@ NAME        = cub3D
 
 LIBFT       = ./libft/libft.a 
 MLX = ./mlx/
-FILES = cub3D.c 
+FILES = cub3D.c parsing_utils.c 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -g
 sanitize    = -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
@@ -16,7 +16,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	@$(MAKE) -C $(MLX)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) 
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
                                                          
 $(LIBFT) :
 	@make -sC ./libft
