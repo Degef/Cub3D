@@ -10,10 +10,21 @@ int		is_cubfile(char *file)
 	return (1);
 }
 
-// int validate_map(t_data **data)
-// {
-
-// }
+void free_memory(t_parse *parse)
+{
+	if (parse->no_text)
+		free(parse->no_text);
+	if (parse->so_text)
+		free(parse->so_text);
+	if (parse->we_text)
+		free(parse->we_text);
+	if (parse->ea_text)
+		free(parse->ea_text);
+	if (parse->text)
+		free_double_array(&parse->text);
+	if (parse->map)
+		free_double_array(&parse->map);
+}
 
 int main(int argc, char **argv)
 {
@@ -26,8 +37,8 @@ int main(int argc, char **argv)
 	if (!read_map(&parse, argv[1]))
 		return (1);
 	if (!parse_map(&parse))
-		return (1);
+		return (free_memory(&parse), 1);
 	
-	free_double_array(&parse.text, parse.num_lines);
+	free_memory(&parse);	
 	return (0);
 }

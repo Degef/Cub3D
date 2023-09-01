@@ -4,7 +4,7 @@ SO ./textures/purplestone.xpm
 WE ./textures/redbrick.xpm
 EA ./textures/wood.xpm
 F 77,92,53
-C 163,208
+C 163,208, 0
 
 		11111111111111111111111111
 		10000000110110000000000001

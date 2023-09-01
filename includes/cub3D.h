@@ -15,28 +15,6 @@
 # include "../mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
 
-enum	e_errors
-{
-	NOT_CUB_ERROR,
-	PARSING_ERROR,
-	MALLOCERROR,
-	MULTIRES,
-	BADSCREEN,
-	MULTINO,
-	MULTISO,
-	MULTIWE,
-	MULTIEA,
-	MULTIFLOOR,
-	MULTICEIL,
-	BADNO,
-	BADSO,
-	BADWE,
-	BADEA,
-	BADFLOOR,
-	BADCEIL,
-	INVALIDMAP,
-};
-
 typedef struct	s_parse
 {
 	char	**map;
@@ -49,7 +27,6 @@ typedef struct	s_parse
 	char	*so_text;
 	char	*we_text;
 	char	*ea_text;
-	// char	*sprite_text;
 	int		floor[3];
 	int		ceil[3];
 	int		map_size;
@@ -64,10 +41,10 @@ typedef struct	s_data
 	t_parse		parse;
 }				t_data;
 
-void	free_double_array(char ***str, int len);
+void	free_double_array(char ***str);
 void	print_double_array(char **str);
 int 	read_map(t_parse *parse, const char* file_name);
 int 	parse_map(t_parse *parse);
-int map_valid(char **map, t_parse *parse);
+int 	map_valid(char **map, t_parse *parse);
 
 #endif

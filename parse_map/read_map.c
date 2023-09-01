@@ -10,8 +10,8 @@ void realloc_map(t_parse *parse)
 	i = -1;
 	while (++i < parse->num_lines - 1)
         temp[i] = ft_strdup(parse->text[i]);
-    temp[parse->num_lines - 1] = NULL;
-    free_double_array(&parse->text, parse->num_lines - 1);
+    // temp[parse->num_lines - 1] = NULL;
+    free_double_array(&parse->text);
     parse->text = temp;
 }
 

@@ -5,7 +5,7 @@ MLXMAC		= ./mlx/
 MLXLINUX	= ./mlx_linux/
 FILES 		= cub3D.c ./parse_map/parsing_utils.c ./parse_map/parse_map.c ./parse_map/read_map.c ./parse_map/validate_map.c 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -g
 sanitize    = -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 RM          = rm -f
 LinLinker	= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
@@ -17,8 +17,8 @@ all: $(NAME)
 %.o : %.c
 	@cc $(CFLAGS) -Imlx -c $< -o $@
 
-# for MAC
 $(NAME): $(LIBFT) $(OBJS)
+# for MAC
 # $(MAKE) -C $(MLXMAC)
 	 $(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
