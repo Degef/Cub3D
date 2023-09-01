@@ -1,4 +1,4 @@
-#include "./includes/cub3D.h"
+#include "../includes/cub3D.h"
 
 void realloc_map(t_parse *parse)
 {
@@ -68,13 +68,15 @@ int read_map(t_parse *parse, const char* file_name)
 	{
         realloc_map((parse));
 		handle_tab(&line, -1, 0, 0);
-		// printf("%s", line);
-        parse->text[parse->num_lines - 1] = ft_substr(line, 0, ft_strlen(line) - 1);
+		if (line[0] == '\n')
+			parse->text[parse->num_lines - 1] = ft_strdup(line);
+		else 
+		    parse->text[parse->num_lines - 1] = ft_substr(line, 0, ft_strlen(line) - 1);
         free(line);
     }
     close(fd);
-	int i = -1;
-	while (++i < parse->num_lines - 1)
-		printf("%s\n", parse->text[i]);
+	// int i = -1;
+	// while (parse->text[++i])
+	// 	printf("%s\n", parse->text[i]);
     return 1;
 }

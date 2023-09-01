@@ -3,19 +3,19 @@
 
 31/08/2023
 
-1. Your program must take as a first argument a file with the .cub extension. ✅
-2. convert tab to 4 spaces ✅
-2. The map must be composed of only 6 possible characters:
+■	Your program must take as a first argument a file with the .cub extension. ✅
+■	convert tab to 4 spaces ✅
+■	separate elements and map ✅
+■	The map must be composed of only 6 possible characters:
 	0 for an empty space, 1 for a wall, and 
-	N,S,E or W for the player’s start position and spawning orientation.
-3. The map must be closed/surrounded by walls, if not the program must return
-	an error
-4. Except for the map content, each type of element can be separated by one or
-	more empty line(s).
-5. Except for the map content which always has to be the last, each type of
-	element can be set in any order in the file.
-6. Except for the map, each type of information from an element can be separated
-	by one or more space(s).
-7. The map must be parsed as it looks in the file. Spaces are a valid part of the
-	map and are up to you to handle. You must.
-
+	N,S,E or W for the player’s start position and spawning orientation.✅
+■	The map must be closed/surrounded by walls, if not the program must return
+	an error✅(left_to_right, top_to_down, down_to_top)
+■	Except for the map content, each type of element can be separated by one or
+	more empty line(s).✅
+■	Except for the map content which always has to be the last, each type of
+	element can be set in any order in the file.✅
+■	Except for the map, each type of information from an element can be separated
+	by one or more space(s). ✅
+■	The map must be parsed as it looks in the file. Spaces are a valid part of the
+	map and are up to you to handle. You must.✅
