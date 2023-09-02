@@ -82,10 +82,10 @@ int parse_map(t_parse *parse)
 	if (!get_elements(parse, -1))
 		return (0);
 	get_map(parse, 0, 0);
-	int i = -1;
-	while (parse->map[++i])
-		printf("%s\n", parse->map[i]);
-	printf("map row: %zu, map colum: %zu\n", parse->row, parse->column);
+	// int i = -1;
+	// while (parse->map[++i])
+	// 	printf("%s\n", parse->map[i]);
+	// printf("map row: %zu, map colum: %zu\n", parse->row, parse->column);
 	if (!map_valid(parse->map, parse))
 		return (0);
 	return (1);

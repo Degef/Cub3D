@@ -3,7 +3,7 @@ NAME        = cub3D
 LIBFT       = ./libft/libft.a 
 MLXMAC		= ./mlx/
 MLXLINUX	= ./mlx_linux/
-FILES 		= cub3D.c ./parse_map/parsing_utils.c ./parse_map/parse_map.c ./parse_map/read_map.c ./parse_map/validate_map.c 
+FILES 		= cub3D.c ./parse_map/parsing_utils.c ./parse_map/parse_map.c ./parse_map/read_map.c ./parse_map/validate_map.c  ./src/start_raycast.c 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -g
 sanitize    = -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
@@ -20,7 +20,7 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(OBJS)
 # for MAC
 # $(MAKE) -C $(MLXMAC)
-	 $(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	 $(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MacLinker) -o $(NAME)
 
 # for LINUX 
 # @$(MAKE) -C $(MLXLINUX)

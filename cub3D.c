@@ -1,3 +1,4 @@
+
 #include "../includes/cub3D.h"
 
 int		is_cubfile(char *file)
@@ -5,6 +6,8 @@ int		is_cubfile(char *file)
 	int i;
 
 	i = ft_strlen(file);
+	if ( i < 5) 
+		return (0);
 	if (file[i - 4] != '.' || (file[i - 3] != 'c' || (file[i - 2] != 'u') || (file[i - 1] != 'b')))
 		return (0);
 	return (1);
@@ -28,6 +31,7 @@ void free_memory(t_parse *parse)
 
 int main(int argc, char **argv)
 {
+	t_data	data;
 	t_parse	parse;
 
 	if (argc < 2 || argc > 2)
@@ -38,7 +42,8 @@ int main(int argc, char **argv)
 		return (1);
 	if (!parse_map(&parse))
 		return (free_memory(&parse), 1);
-	
+	data.parse = &parse;
+	start_game(&data);
 	free_memory(&parse);	
 	return (0);
 }
