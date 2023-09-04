@@ -15,33 +15,11 @@
 # include "../mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
 
-typedef struct ray
-{
-	double		a;
-	int			num;
-	t_coord		ray;
-	t_coord		offset;
-	double		_tan;
-	t_coord		h_fcord;
-	t_coord		v_fcord;
-	double		h_fdis;
-	double		v_fdis;
-	t_cub_main	*main;
-	int			check_num;
-	t_coord		wc_temp;
-	double		f_dis;
-	double		h_line;
-	double		h_offset;
-	int			dir;
-	double		draw_end;
-	double		draw_start;
-}	t_ray;
-
-typedef struct s_pos
-{
-	double	x;
-	double	y;
-}	t_pos;
+// typedef struct s_pos
+// {
+// 	double	x;
+// 	double	y;
+// }	t_pos;
 
 typedef struct mlx
 {
@@ -69,11 +47,54 @@ typedef struct	s_parse
 	int		nbr_str;
 }				t_parse;
 
+typedef struct s_player
+{
+	double		x_pos;
+	double		y_pos; 
+	int 		x; 
+	int 		y;
+	double		angle;
+	double 		fov; // should be 60 degrees
+	int			height; // should be 32 considering that walls are 64 units high.
+}	t_player;
+
+
+typedef struct s_ray {
+	double		angle;
+	double		x;
+	double		y;
+	double		h_x_step;
+	double		h_y_step;
+	double		v_x_step;
+	double		v_y_step;
+	double		h_x_intercept;
+	double		h_y_intercept;
+	double		v_x_intercept;
+	double		v_y_intercept;
+	double		h_wall_hit_x;
+	double		h_wall_hit_y;
+	double		v_wall_hit_x;
+	double		v_wall_hit_y;
+	int 		h_wall_hit;
+	int 		v_wall_hit;
+	double		x_hit;
+	double		y_hit;
+	double		h_distance;
+	double		v_distance;
+	double		distance;
+	int			was_hit_vertical;
+}	t_ray;
+
 typedef struct	s_data
 {
 	t_parse		*parse;
 	t_mlx		mlx;
-	t_pos		pos;
+	t_ray 		*rays;
+	t_player	player;
+	int			plane_width; // 320 units wide
+	int			plane_height; // 200 units high
+	double		plane_dist; // 277.128 units
+	double		angle_increment; // 0.1875 degrees
 }				t_data;
 
 void	free_double_array(char ***str);
