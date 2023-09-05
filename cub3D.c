@@ -13,7 +13,7 @@ int		is_cubfile(char *file)
 	return (1);
 }
 
-void free_memory(t_parse *parse)
+void free_memory(t_parse *parse, t_data *data)
 {
 	if (parse->no_text)
 		free(parse->no_text);
@@ -27,6 +27,10 @@ void free_memory(t_parse *parse)
 		free_double_array(&parse->text);
 	if (parse->map)
 		free_double_array(&parse->map);
+	if (data->rays)
+		free(data->rays);
+	if (data->buffer)
+		free_double_array2(&data->buffer);
 }
 
 int main(int argc, char **argv)
@@ -41,9 +45,9 @@ int main(int argc, char **argv)
 	if (!read_map(&parse, argv[1]))
 		return (1);
 	if (!parse_map(&parse))
-		return (free_memory(&parse), 1);
+		return (free_memory(&parse, &data), 1);
 	data.parse = &parse;
 	start_game(&data);
-	free_memory(&parse);	
+	free_memory(&parse, &data);	
 	return (0);
 }
