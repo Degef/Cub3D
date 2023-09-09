@@ -64,7 +64,7 @@ void get_map(t_parse *parse, int i, int j)
 			parse->column = ft_strlen(parse->text[i]);
 		parse->map[j++] = ft_strdup(parse->text[i++]);
 	}
-	parse->row = j - 1;
+	parse->row = j;
 }
 
 void init_map(t_parse *parse)

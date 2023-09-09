@@ -11,13 +11,14 @@ int endgame(void *pa)
 	exit(0);
 }
 
+
 void move_forward(t_data *data)
 {
 	double new_x;
 	double new_y;
 
-	new_x = data->player.x_pos - cos(data->player.angle * (PI / 180)) * STEP_SIZE;
-	new_y = data->player.y_pos - sin(data->player.angle * (PI / 180)) * STEP_SIZE;
+	new_x = data->player.x_pos - cos(data->player.angle) * STEP_SIZE;
+	new_y = data->player.y_pos - sin(data->player.angle) * STEP_SIZE;
 	if (data->parse->map[(int)(new_y / 64)][(int)(new_x / 64)] != '1')
 	{
 		data->player.x_pos = new_x;
@@ -30,8 +31,8 @@ void move_backward(t_data *data)
 	double new_x;
 	double new_y;
 
-	new_x = data->player.x_pos + cos(data->player.angle * (PI / 180)) * STEP_SIZE;
-	new_y = data->player.y_pos + sin(data->player.angle * (PI / 180)) * STEP_SIZE;
+	new_x = data->player.x_pos + cos(data->player.angle) * STEP_SIZE;
+	new_y = data->player.y_pos + sin(data->player.angle) * STEP_SIZE;
 	if (data->parse->map[(int)(new_y / 64)][(int)(new_x / 64)] != '1')
 	{
 		data->player.x_pos = new_x;
@@ -43,14 +44,14 @@ void rotate_left(t_data *data)
 {
 	data->player.angle -= ROTATION_ANGLE;
 	if (data->player.angle < 0)
-		data->player.angle += 360;
+		data->player.angle += 2 * PI;
 }
 
 void rotate_right(t_data *data)
 {
 	data->player.angle += ROTATION_ANGLE;
-	if (data->player.angle > 360)
-		data->player.angle -= 360;
+	if (data->player.angle > 2 * PI)
+		data->player.angle -= 2 * PI;
 }
 
 int move(int key, void *da)

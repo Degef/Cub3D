@@ -17,10 +17,10 @@
 
 # define WIN_W	768
 # define WIN_H	512
-# define STEP_SIZE 10.00
+# define STEP_SIZE  10.00
 # define FOV 60.00
-# define ROTATION_ANGLE 10
-# define PI 3.14159265358979323846
+# define ROTATION_ANGLE 0.174533 //10 degree
+# define PI 3.1415926535898
 # define CUBE_SIZE 64.00
 
 // keys 
@@ -71,13 +71,16 @@ typedef struct s_player
 	int 		x; 
 	int 		y;
 	double		angle;
-	double 		fov; // should be 60 degrees
-	int			height; // should be 32 considering that walls are 64 units high.
+	double 		fov; 
+	int			height;
+	double		deltaX;
+	double		deltaY;
 }	t_player;
 
 
 typedef struct s_ray {
 	double		angle;
+	struct s_data 		*data;
 	t_coord		pos;
 	t_coord		h_step;
 	t_coord		v_step;
@@ -85,11 +88,12 @@ typedef struct s_ray {
 	t_coord		v_intercept;
 	t_coord		h_wall_hit;
 	t_coord		v_wall_hit;
-	t_coord		distance; // x will be distance using horizontal calculations and y will be distance using vertical calculations
+	t_coord		wall_hit;
+	// t_coord		distance; // x will be distance using horizontal calculations and y will be distance using vertical calculations
 	int 		h_wall_hit_flag;
 	int 		v_wall_hit_flag;
-	// double		h_distance;
-	// double		v_distance;
+	double		h_distance;
+	double		v_distance;
 	double		ray_length;
 	// int			was_hit_vertical;
 }	t_ray;
@@ -126,4 +130,10 @@ int 	init_attributes(t_data *data);
 int 	init_rays(t_data *data);
 int 	start_ray_casting(t_data *data);
 int		init_buffer(t_data *data);
+void 	draw_player(t_data *data, int x, int y);
+void 	draw_map(t_data *data, char **map, int x, int y);
+int 	move_player(int key, void *da);
+int 	start_ray_casting(t_data *data);
+void 	draw_rays(t_data *data, int n_rays, int i);
+
 #endif

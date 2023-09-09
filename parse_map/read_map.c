@@ -70,8 +70,10 @@ int read_map(t_parse *parse, const char* file_name)
 		handle_tab(&line, -1, 0, 0);
 		if (line[0] == '\n')
 			parse->text[parse->num_lines - 1] = ft_strdup(line);
-		else 
+		else if (line[ft_strlen(line) - 1] == '\n')
 		    parse->text[parse->num_lines - 1] = ft_substr(line, 0, ft_strlen(line) - 1);
+		else 
+		    parse->text[parse->num_lines - 1] = ft_strdup(line);
         free(line);
     }
     close(fd);

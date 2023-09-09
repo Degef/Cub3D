@@ -40,17 +40,17 @@ int check_top_border(char **map, int i, int j)
 
 int check_bottom_border(char **map, t_parse *parse, int i, int j)
 {
-	while (map[parse->row][++i])
+	while (map[parse->row - 1][++i])
 	{
-		if (map[parse->row][i] == '1')
+		if (map[parse->row - 1][i] == '1')
 			continue;
-		else if (map[parse->row][i] == 32)
+		else if (map[parse->row - 1][i] == 32)
 		{
 			while (map[j][i] == 32)
 				j--;
 			if (map[j][i] != '1')
 				return (printf("Error! bottom border not closed.\n"), 1);
-			j = parse->row;
+			j = parse->row - 1;
 		}
 		else
 			return (printf("Errorxx! bottom border not closed.\n"), 1);
