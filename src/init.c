@@ -40,8 +40,8 @@ int init_rays(t_data *data)
 	double angle;
 
 	i = -1;
-	angle = data->player.angle;
-	while (++i < 1)
+	angle = data->player.angle - (FOV * PI/180)/2.0;
+	while (++i < data->plane_width)
 	{
 		data->rays[i].angle = angle;
 		data->rays[i].pos.x = data->player.x_pos;
@@ -75,7 +75,7 @@ int init_buffer(t_data *data)
 
 int init_attributes(t_data *data)
 {
-	int i;
+	// int i;
 
 	data->player.height = 32;
 	data->plane_width = data->parse->column * 64;
@@ -83,10 +83,10 @@ int init_attributes(t_data *data)
 	data->plane_dist = 277.128;
 	data->angle_increment = (60.00 * PI / 180) / data->plane_width;
 	data->rays = ft_calloc(data->plane_width + 1, sizeof(t_ray));
-	data->buffer = (unsigned int **)ft_calloc(data->plane_height, sizeof(unsigned int *));
-	i = -1;
-	while (++i < data->plane_height)
-		data->buffer[i] = (unsigned int *)ft_calloc(data->plane_width, sizeof(unsigned int));
+	// data->buffer = (unsigned int **)ft_calloc(data->plane_height, sizeof(unsigned int *));
+	// i = -1;
+	// while (++i < data->plane_height)
+	// 	data->buffer[i] = (unsigned int *)ft_calloc(data->plane_width, sizeof(unsigned int));
 	// init_buffer(data);
 	find_player(data);
 	data->player.deltaX = cos(data->player.angle)*5;

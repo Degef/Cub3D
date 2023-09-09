@@ -6,6 +6,7 @@
 		"string": "c",
 		"string_view": "c",
 		"vector": "c",
-		"complex": "c"
+		"complex": "c",
+		"__node_handle": "c"
 	}
 }

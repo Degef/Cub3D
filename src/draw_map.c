@@ -113,21 +113,19 @@ void draw_map(t_data *data, char **map, int x, int y)
 		}
 	}
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window, data->image, 0, 0);
-	draw_grid_lines(data, x, y);
+	// draw_grid_lines(data, x, y);
 }
 
-void draw_rays(t_data *data, int n_rays, int i)
-{
-	i = -1;
-	(void)n_rays;
-	// while (++i < n_rays)
-	while (++i < 1)
-	{
-		// printf("i = %d, angle = %f\n", i, data->rays[i].angle);
-		// if (data->rays[i].angle != 3.141593)
-		draw_line(data, data->player.x_pos, data->player.y_pos, data->rays[i].wall_hit.x, data->rays[i].wall_hit.y, 0xFF0000);
-	}
-}
+// void draw_rays(t_data *data, int n_rays, int i)
+// {
+// 	i = -1;
+// 	while (++i < n_rays)
+// 	{
+// 		// printf("i = %d, angle = %f\n", i, data->rays[i].angle);
+// 		// if (data->rays[i].angle != 3.141593)
+// 		draw_line(data, data->player.x_pos, data->player.y_pos, data->rays[i].wall_hit.x, data->rays[i].wall_hit.y, 0xFF0000);
+// 	}
+// }
 
 int move_player(int key, void *da)
 {
@@ -147,10 +145,10 @@ int move_player(int key, void *da)
 	else 
 		return (0);
 	init_rays(data);
-	start_ray_casting(data);
 	mlx_clear_window(data->mlx.mlx, data->mlx.window);
 	draw_map(data, data->parse->map, data->parse->column*64, data->parse->row*64);
 	draw_player(data, data->player.x_pos, data->player.y_pos);
-	draw_rays(data, data->plane_width, 0);
+	start_ray_casting(data);
+	// draw_rays(data, data->plane_width, 0);
 	return (0);
 }

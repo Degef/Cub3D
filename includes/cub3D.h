@@ -135,5 +135,6 @@ void 	draw_map(t_data *data, char **map, int x, int y);
 int 	move_player(int key, void *da);
 int 	start_ray_casting(t_data *data);
 void 	draw_rays(t_data *data, int n_rays, int i);
+void 	draw_line(t_data *data, int x1, int y1, int x2, int y2, int color);
 
 #endif

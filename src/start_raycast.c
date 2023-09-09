@@ -111,9 +111,9 @@ int find_v_ray_wall_hit(t_ray *ray, char **map, double x_to_check, double y_to_c
 		x_to_check = ray->v_intercept.x;
 		y_to_check = ray->v_intercept.y;
 		if (cos(ray->angle) > 0.0001)
-			x_to_check -= 0.001;
+			x_to_check += 0.001;
 		else if (cos(ray->angle) < -0.0001)
-			x_to_check += 0.001; 
+			x_to_check -= 0.001; 
 		if (is_wall(ray, x_to_check, y_to_check, map))
 		{
 			ray->v_wall_hit_flag = 1;
@@ -126,20 +126,15 @@ int find_v_ray_wall_hit(t_ray *ray, char **map, double x_to_check, double y_to_c
 			ray->v_intercept.y += ray->v_step.y;
 		}
 	}
-	printf("i: %d\n", num);
 	return (0);	
 }
 
 int find_vertical_intercept(t_ray *ray, char **map)
 {
-	// printf("Angle = %f\n", ray->angle);
 	ray->v_distance = 100000;
-	// if (ray->angle == PI/2.0 || ray->angle == 3.0*PI / 2.0)
-	// 	return (0);
 	double Tan = tan(ray->angle);
-	if (cos(ray->angle) > 0.0001) //looking right
+	if (cos(ray->angle) > 0.001) //looking right
 	{
-		printf("here\n");
 		ray->v_intercept.x = (((int)ray->pos.x>>6)<<6) + CUBE_SIZE;
 		ray->v_intercept.y = (ray->pos.x - ray->v_intercept.x) * Tan + ray->pos.y;
 		ray->v_step.x = CUBE_SIZE;
@@ -147,7 +142,7 @@ int find_vertical_intercept(t_ray *ray, char **map)
 	}
 	else if (cos(ray->angle) < -0.001)
 	{
-		ray->v_intercept.x = (((int)ray->pos.x>>6)<<6) - 0.0001;
+		ray->v_intercept.x = (((int)ray->pos.x>>6)<<6) - 0.001;
 		ray->v_intercept.y = (ray->pos.x - ray->v_intercept.x) * Tan + ray->pos.y;
 		ray->v_step.x = -CUBE_SIZE;
 		ray->v_step.y = CUBE_SIZE * Tan;
@@ -160,7 +155,7 @@ int find_h_ray_wall_hit(t_ray *ray, char **map, double x_to_check, double y_to_c
 {
 	int num = 0;
 	// printf("1angle = %f \n", ray->angle);
-	while (++num < 8)
+	while (++num < 10)
 	{
 		x_to_check = ray->h_intercept.x;
 		y_to_check = ray->h_intercept.y;
@@ -208,7 +203,6 @@ int find_horizontal_intercept(t_ray *ray, char **map)
 		ray->h_step.x = -CUBE_SIZE * Tan;
 	}
 	find_h_ray_wall_hit(ray, map, ray->h_intercept.x, ray->h_intercept.y);
-	// printf("angle = %f \n", ray->angle);
 	return (0);
 }
 
@@ -217,14 +211,11 @@ int start_ray_casting(t_data *data)
 	int i;
 
 	i = -1;
-	// while (++i < data->plane_width)
-	while (++i < 1)
+	while (++i < data->plane_width)
 	{
-		// printf("num of rays: %d i = %d, angle = %f PI = %f\n", data->plane_width, i, data->rays[i].angle, PI);
 		find_horizontal_intercept(&data->rays[i], data->parse->map);
 		find_vertical_intercept(&data->rays[i], data->parse->map);
-		printf("h_dist: %f, v_dist: %f\n", data->rays[i].h_distance, data->rays[i].v_distance);
-		// printf("h_dist: %f\n", data->rays[i].h_distance);
+		// printf("h_dist: %f, v_dist: %f\n", data->rays[i].h_distance, data->rays[i].v_distance);
 		if (data->rays[i].h_distance <= data->rays[i].v_distance && data->rays[i].h_wall_hit_flag)
 		{
 			data->rays[i].wall_hit.x = data->rays[i].h_intercept.x;
@@ -237,6 +228,7 @@ int start_ray_casting(t_data *data)
 			data->rays[i].wall_hit.y = data->rays[i].v_intercept.y;
 			data->rays[i].ray_length = data->rays[i].v_distance;	
 		}
+		draw_line(data, data->player.x_pos, data->player.y_pos, data->rays[i].wall_hit.x, data->rays[i].wall_hit.y, 0xFF0000);
 		// fix_fish_eye(&data->rays[i], data->player.angle);
 		// find_draw_start_end(&data->rays[i], data, i);
 	}
@@ -253,10 +245,10 @@ int start_game(t_data *data)
 	data->mlx.window = mlx_new_window(data->mlx.mlx, data->parse->column*64, data->parse->row*64, "Simple Window");
 	data->image = mlx_new_image(data->mlx.mlx, data->parse->column*64, data->parse->row*64);
 	data->addr = (int *)mlx_get_data_addr(data->image, &data->bits_per_pixel, &data->line_length, &data->endian);
-	start_ray_casting(data);
 	draw_map(data, data->parse->map, data->parse->column*64, data->parse->row*64);
 	draw_player(data, data->player.x_pos, data->player.y_pos);
-	draw_rays(data, data->plane_width, 0);
+	start_ray_casting(data);
+	// draw_rays(data, data->plane_width, 0);
 	mlx_hook(data->mlx.window, 2, 0, &move_player, data);
 	mlx_hook(data->mlx.window, 17, 1L << 17, &endgame, data);
     mlx_loop(data->mlx.mlx);

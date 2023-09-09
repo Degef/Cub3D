@@ -6,7 +6,7 @@ MLXLINUX	= ./mlx_linux/
 FILES 		= cub3D.c ./parse_map/parsing_utils.c ./parse_map/parse_map.c ./parse_map/read_map.c ./parse_map/validate_map.c   \
 				./src/start_raycast.c ./src/hooks.c ./src/init.c  ./src/draw_map.c 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g3
+CFLAGS      = -Wall -Wextra -Werror
 sanitize    = -fsanitize=address -fno-omit-frame-pointer 
 # -fno-optimize-sibling-calls
 RM          = rm -f
