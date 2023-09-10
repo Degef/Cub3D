@@ -32,19 +32,6 @@
 # define LEFT 123
 # define RIGHT 124
 
-typedef struct s_coord
-{
-	int	x;
-	int	y;
-}	t_coord;
-
-typedef struct mlx
-{
-	void	*window;
-	void	*mlx;
-	void	*width;
-	void	*height;
-}	t_mlx;
 
 typedef struct	s_parse
 {
@@ -64,30 +51,14 @@ typedef struct	s_parse
 	int		nbr_str;
 }				t_parse;
 
-typedef struct s_player
-{
-	double		x_pos;
-	double		y_pos; 
-	int 		x; 
-	int 		y;
-	double		angle;
-	double 		fov; 
-	int			height;
-	double		deltaX;
-	double		deltaY;
-}	t_player;
 
 typedef struct s_ray {
 	double		angle;
 	struct s_data 		*data;
-	t_coord		pos;
-	t_coord		h_step;
-	t_coord		v_step;
-	t_coord		h_intercept;
-	t_coord		v_intercept;
-	t_coord		h_wall_hit;
-	t_coord		v_wall_hit;
-	t_coord		wall_hit;
+	double		x;
+	double		y;
+	double 		x_intercept;
+	double 		y_intercept;
 	int 		h_wall_hit_flag;
 	int 		v_wall_hit_flag;
 	double		h_distance;
@@ -98,9 +69,16 @@ typedef struct s_ray {
 typedef struct	s_data
 {
 	t_parse		*parse;
-	t_mlx		mlx;
 	t_ray 		ray;
-	t_player	player;
+	double		x_pos;
+	double		y_pos; 
+	double		angle;
+	double 		fov; 
+	// int			height;
+	double		deltaX;
+	double		deltaY;
+	void		*window;
+	void		*mlx;
 	int			plane_width;
 	int			plane_height;
 	double		plane_dist; 

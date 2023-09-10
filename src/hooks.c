@@ -6,23 +6,22 @@ int endgame(void *pa)
 
 	data = (t_data *)pa;
 
-	mlx_destroy_window(data->mlx.mlx, data->mlx.window);
+	mlx_destroy_window(data->mlx, data->window);
 	free_memory(data->parse, data);
 	exit(0);
 }
-
 
 void move_forward(t_data *data)
 {
 	double new_x;
 	double new_y;
 
-	new_x = data->player.x_pos - cos(data->player.angle) * STEP_SIZE;
-	new_y = data->player.y_pos - sin(data->player.angle) * STEP_SIZE;
+	new_x = data->x_pos - cos(data->angle) * STEP_SIZE;
+	new_y = data->y_pos - sin(data->angle) * STEP_SIZE;
 	if (data->parse->map[(int)(new_y / 64)][(int)(new_x / 64)] != '1')
 	{
-		data->player.x_pos = new_x;
-		data->player.y_pos = new_y;
+		data->x_pos = new_x;
+		data->y_pos = new_y;
 	}
 }
 
@@ -31,27 +30,27 @@ void move_backward(t_data *data)
 	double new_x;
 	double new_y;
 
-	new_x = data->player.x_pos + cos(data->player.angle) * STEP_SIZE;
-	new_y = data->player.y_pos + sin(data->player.angle) * STEP_SIZE;
+	new_x = data->x_pos + cos(data->angle) * STEP_SIZE;
+	new_y = data->y_pos + sin(data->angle) * STEP_SIZE;
 	if (data->parse->map[(int)(new_y / 64)][(int)(new_x / 64)] != '1')
 	{
-		data->player.x_pos = new_x;
-		data->player.y_pos = new_y;
+		data->x_pos = new_x;
+		data->y_pos = new_y;
 	}
 }
 
 void rotate_left(t_data *data)
 {
-	data->player.angle -= ROTATION_ANGLE;
-	if (data->player.angle < 0)
-		data->player.angle += 2 * PI;
+	data->angle -= ROTATION_ANGLE;
+	if (data->angle < 0)
+		data->angle += 2 * PI;
 }
 
 void rotate_right(t_data *data)
 {
-	data->player.angle += ROTATION_ANGLE;
-	if (data->player.angle > 2 * PI)
-		data->player.angle -= 2 * PI;
+	data->angle += ROTATION_ANGLE;
+	if (data->angle > 2 * PI)
+		data->angle -= 2 * PI;
 }
 
 int move(int key, void *da)
@@ -77,7 +76,7 @@ int move(int key, void *da)
 		return (0);
 	// init_rays(data);
 	init_buffer(data);
-	mlx_clear_window(data->mlx.mlx, data->mlx.window);
+	mlx_clear_window(data->mlx, data->window);
 	start_ray_casting(data, &data->ray);
 	return (0);
 }

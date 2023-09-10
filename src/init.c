@@ -14,18 +14,16 @@ int find_player(t_data *data)
 			if (data->parse->map[i][j] == 'N' || data->parse->map[i][j] == 'S' 
 					|| data->parse->map[i][j] == 'E' || data->parse->map[i][j] == 'W')
 			{
-				data->player.x_pos = j * 64.00 + 32.00;
-				data->player.y_pos = i * 64.00 + 32.00;
-				data->player.x = j;
-				data->player.y = i;
+				data->x_pos = j * 64.00 + 32.00;
+				data->y_pos = i * 64.00 + 32.00;
 				if (data->parse->map[i][j] == 'E')
-					data->player.angle = 0;
+					data->angle = 0;
 				if (data->parse->map[i][j] == 'N')
-					data->player.angle = PI / 2;
+					data->angle = PI / 2;
 				else if (data->parse->map[i][j] == 'W')
-					data->player.angle = PI;
+					data->angle = PI;
 				else if (data->parse->map[i][j] == 'S')
-					data->player.angle = 3 * PI / 2;
+					data->angle = 3 * PI / 2;
 				data->parse->map[i][j] = '0';
 				return (0);
 			}
@@ -57,19 +55,18 @@ int init_attributes(t_data *data)
 {
 	// int i;
 
-	data->player.height = 32;
+	// data->player.height = 32;
 	data->plane_width = data->parse->column * 64;
 	data->plane_height = data->parse->row * 64;
 	data->plane_dist = 277.128;
-	data->angle_increment = (60.00 * PI / 180) / 320;
 	// data->buffer = (unsigned int **)ft_calloc(data->plane_height, sizeof(unsigned int *));
 	// i = -1;
 	// while (++i < data->plane_height)
 	// 	data->buffer[i] = (unsigned int *)ft_calloc(data->plane_width, sizeof(unsigned int));
 	// init_buffer(data);
 	find_player(data);
-	data->player.deltaX = cos(data->player.angle)*5;
-	data->player.deltaY = -sin(data->player.angle)*5;
+	data->deltaX = cos(data->angle)*5;
+	data->deltaY = -sin(data->angle)*5;
 	// init_rays(data);
 	return (0);
 }
