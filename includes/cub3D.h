@@ -81,8 +81,8 @@ typedef struct s_ray {
 	double		angle;
 	struct s_data 		*data;
 	t_coord		pos;
-	// t_coord		h_step;
-	// t_coord		v_step;
+	t_coord		h_step;
+	t_coord		v_step;
 	t_coord		h_intercept;
 	t_coord		v_intercept;
 	t_coord		h_wall_hit;
