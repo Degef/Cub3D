@@ -108,6 +108,7 @@ int find_v_ray_wall_hit(t_ray *ray, char **map, double x_to_check, double y_to_c
 	int num = -1;
 	while (++num < 8)
 	{
+		// printf("vertical 1angle = %f \n", ray->angle);
 		x_to_check = ray->v_intercept.x;
 		y_to_check = ray->v_intercept.y;
 		if (cos(ray->angle) > 0.0001)
@@ -154,9 +155,9 @@ int find_vertical_intercept(t_ray *ray, char **map)
 int find_h_ray_wall_hit(t_ray *ray, char **map, double x_to_check, double y_to_check)
 {
 	int num = 0;
-	// printf("1angle = %f \n", ray->angle);
 	while (++num < 10)
 	{
+		// printf("horizontal angle = %f \n", ray->angle);
 		x_to_check = ray->h_intercept.x;
 		y_to_check = ray->h_intercept.y;
 		if (ray->angle > 0 && ray->angle < PI)
@@ -206,35 +207,45 @@ int find_horizontal_intercept(t_ray *ray, char **map)
 	return (0);
 }
 
-int start_ray_casting(t_data *data)
+int init_rays(t_data *data)
 {
 	int i;
 
 	i = -1;
-	while (++i < data->plane_width)
+	data->ray.angle = data->player.angle - (FOV * PI/180)/2.0;
+	if (data->ray.angle > 2 * PI)
+		data->ray.angle -= 2 * PI;
+	data->ray.pos.x = data->player.x_pos;
+	data->ray.pos.y = data->player.y_pos;
+	data->ray.data = data;
+	return (0);
+}
+
+int start_ray_casting(t_data *data, t_ray *ray)
+{
+	int i;
+
+	i = -1;
+	init_rays(data);
+	while (++i < 320)
 	{
-		find_horizontal_intercept(&data->rays[i], data->parse->map);
-		find_vertical_intercept(&data->rays[i], data->parse->map);
-		// printf("h_dist: %f, v_dist: %f\n", data->rays[i].h_distance, data->rays[i].v_distance);
-		if (data->rays[i].h_distance <= data->rays[i].v_distance && data->rays[i].h_wall_hit_flag)
+		find_horizontal_intercept(ray, data->parse->map);
+		find_vertical_intercept(ray, data->parse->map);
+		if (ray->h_distance <= ray->v_distance && ray->h_wall_hit_flag)
 		{
-			data->rays[i].wall_hit.x = data->rays[i].h_intercept.x;
-			data->rays[i].wall_hit.y = data->rays[i].h_intercept.y;
-			data->rays[i].ray_length = data->rays[i].h_distance;
+			ray->wall_hit.x = ray->h_intercept.x;
+			ray->wall_hit.y = ray->h_intercept.y;
+			ray->ray_length = ray->h_distance;
 		}
-		else if (data->rays[i].h_distance > data->rays[i].v_distance && data->rays[i].v_wall_hit_flag)
+		else if (ray->h_distance > ray->v_distance && ray->v_wall_hit_flag)
 		{
-			data->rays[i].wall_hit.x = data->rays[i].v_intercept.x;
-			data->rays[i].wall_hit.y = data->rays[i].v_intercept.y;
-			data->rays[i].ray_length = data->rays[i].v_distance;	
+			ray->wall_hit.x = ray->v_intercept.x;
+			ray->wall_hit.y = ray->v_intercept.y;
+			ray->ray_length = ray->v_distance;	
 		}
-		draw_line(data, data->player.x_pos, data->player.y_pos, data->rays[i].wall_hit.x, data->rays[i].wall_hit.y, 0xFF0000);
-		// fix_fish_eye(&data->rays[i], data->player.angle);
-		// find_draw_start_end(&data->rays[i], data, i);
+		draw_line(data, data->player.x_pos, data->player.y_pos, ray->wall_hit.x, ray->wall_hit.y, 0xFF0000);
+		ray->angle += data->angle_increment;
 	}
-	// put_pixels(data);
-	// mlx_put_image_to_window(data->mlx.mlx, data->mlx.window, data->image, 0, 0);
-	// printf("exited from ray caster\n");
 	return (0);
 }
 
@@ -247,8 +258,7 @@ int start_game(t_data *data)
 	data->addr = (int *)mlx_get_data_addr(data->image, &data->bits_per_pixel, &data->line_length, &data->endian);
 	draw_map(data, data->parse->map, data->parse->column*64, data->parse->row*64);
 	draw_player(data, data->player.x_pos, data->player.y_pos);
-	start_ray_casting(data);
-	// draw_rays(data, data->plane_width, 0);
+	start_ray_casting(data, &data->ray);
 	mlx_hook(data->mlx.window, 2, 0, &move_player, data);
 	mlx_hook(data->mlx.window, 17, 1L << 17, &endgame, data);
     mlx_loop(data->mlx.mlx);

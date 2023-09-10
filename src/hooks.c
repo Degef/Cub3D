@@ -75,9 +75,9 @@ int move(int key, void *da)
 		rotate_right(data);
 	else 
 		return (0);
-	init_rays(data);
+	// init_rays(data);
 	init_buffer(data);
 	mlx_clear_window(data->mlx.mlx, data->mlx.window);
-	start_ray_casting(data);
+	start_ray_casting(data, &data->ray);
 	return (0);
 }

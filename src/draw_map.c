@@ -39,9 +39,8 @@ void draw_line(t_data *data, int x1, int y1, int x2, int y2, int color) {
     int err = dx - dy;
     int e2;
 
-    while (1) {
+    while (x1 != x2 || y1 != y2) {
         mlx_pixel_put(data->mlx.mlx, data->mlx.window, x1, y1, color);
-
         if (x1 == x2 && y1 == y2)
 			break;
         e2 = 2 * err;
@@ -56,6 +55,36 @@ void draw_line(t_data *data, int x1, int y1, int x2, int y2, int color) {
     }
 }
 
+// void	draw_line(t_data *data, int x1, int y1, int x2, int y2, int color)
+// {
+// 	// int	x1;
+// 	// int	y1;
+// 	// int	x2;
+// 	// int	y2;
+
+// 	// x1 = arr[0];
+// 	// y1 = arr[2];
+// 	// x2 = arr[1];
+// 	// y2 = arr[3];
+// 	init_vals(cub, (int []){x1, y1, x2, y2});
+// 	while (x1 != x2 || y1 != y2)
+// 	{
+// 		my_mlx_pixel_put(cub, x1, y1, color);
+// 		cub->ray_c.err2 = 2 * cub->ray_c.err;
+// 		if (cub->ray_c.err2 > -cub->ray_c.dy)
+// 		{
+// 			cub->ray_c.err -= cub->ray_c.dy;
+// 			x1 += cub->ray_c.sx;
+// 		}
+// 		if (cub->ray_c.err2 < cub->ray_c.dx)
+// 		{
+// 			cub->ray_c.err += cub->ray_c.dx;
+// 			y1 += cub->ray_c.sy;
+// 		}
+// 	}
+// }
+
+
 void draw_player(t_data *data, int x, int y)
 {
     int size = 5;  // Adjust the cube size as needed
@@ -69,9 +98,9 @@ void draw_player(t_data *data, int x, int y)
 		while ( ++j < size)
             mlx_pixel_put(data->mlx.mlx, data->mlx.window, x + i, y + j, color);
 	}
-    // double x2 = x + data->player.deltaX;
-    // double y2 = y + data->player.deltaY;
-    // draw_line(data, x, y, x2, y2, color);
+    double x2 = x + data->player.deltaX*5;
+    double y2 = y + data->player.deltaY*5;
+    draw_line(data, x, y, x2, y2, color);
 }
 
 void draw_grid_lines(t_data *data, int win_width, int win_height)
@@ -113,7 +142,7 @@ void draw_map(t_data *data, char **map, int x, int y)
 		}
 	}
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window, data->image, 0, 0);
-	// draw_grid_lines(data, x, y);
+	draw_grid_lines(data, x, y);
 }
 
 // void draw_rays(t_data *data, int n_rays, int i)
@@ -144,11 +173,11 @@ int move_player(int key, void *da)
 		move_right(data);
 	else 
 		return (0);
-	init_rays(data);
+	// init_rays(data);
 	mlx_clear_window(data->mlx.mlx, data->mlx.window);
 	draw_map(data, data->parse->map, data->parse->column*64, data->parse->row*64);
 	draw_player(data, data->player.x_pos, data->player.y_pos);
-	start_ray_casting(data);
+	start_ray_casting(data, &data->ray);
 	// draw_rays(data, data->plane_width, 0);
 	return (0);
 }

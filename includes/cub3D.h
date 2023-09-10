@@ -77,32 +77,29 @@ typedef struct s_player
 	double		deltaY;
 }	t_player;
 
-
 typedef struct s_ray {
 	double		angle;
 	struct s_data 		*data;
 	t_coord		pos;
-	t_coord		h_step;
-	t_coord		v_step;
+	// t_coord		h_step;
+	// t_coord		v_step;
 	t_coord		h_intercept;
 	t_coord		v_intercept;
 	t_coord		h_wall_hit;
 	t_coord		v_wall_hit;
 	t_coord		wall_hit;
-	// t_coord		distance; // x will be distance using horizontal calculations and y will be distance using vertical calculations
 	int 		h_wall_hit_flag;
 	int 		v_wall_hit_flag;
 	double		h_distance;
 	double		v_distance;
 	double		ray_length;
-	// int			was_hit_vertical;
 }	t_ray;
 
 typedef struct	s_data
 {
 	t_parse		*parse;
 	t_mlx		mlx;
-	t_ray 		*rays;
+	t_ray 		ray;
 	t_player	player;
 	int			plane_width;
 	int			plane_height;
@@ -128,12 +125,11 @@ void 	free_memory(t_parse *parse, t_data *data);
 int 	move(int key, void *da);
 int 	init_attributes(t_data *data);
 int 	init_rays(t_data *data);
-int 	start_ray_casting(t_data *data);
 int		init_buffer(t_data *data);
 void 	draw_player(t_data *data, int x, int y);
 void 	draw_map(t_data *data, char **map, int x, int y);
 int 	move_player(int key, void *da);
-int 	start_ray_casting(t_data *data);
+int 	start_ray_casting(t_data *data, t_ray *ray);
 void 	draw_rays(t_data *data, int n_rays, int i);
 void 	draw_line(t_data *data, int x1, int y1, int x2, int y2, int color);
 

@@ -27,10 +27,11 @@ void free_memory(t_parse *parse, t_data *data)
 		free_double_array(&parse->text);
 	if (parse->map)
 		free_double_array(&parse->map);
-	if (data->rays)
-		free(data->rays);
-	if (data->buffer)
-		free_double_array2(&data->buffer);
+	(void)data;
+	// if (data->rays)
+	// 	free(data->rays);
+	// if (data->buffer)
+	// 	free_double_array2(&data->buffer);
 }
 
 int main(int argc, char **argv)
