@@ -15,11 +15,11 @@
 # include "../mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
 
-# define WIN_W	768
-# define WIN_H	512
-# define STEP_SIZE  10.00
+# define WIN_W	832
+# define WIN_H	640
+# define STEP_SIZE  20.00
 # define FOV 60.00
-# define ROTATION_ANGLE 0.174533 //10 degree
+# define ROTATION_ANGLE 0.1
 # define PI 3.1415926535898
 # define CUBE_SIZE 64.00
 
@@ -74,7 +74,6 @@ typedef struct	s_data
 	double		y_pos; 
 	double		angle;
 	double 		fov; 
-	// int			height;
 	double		deltaX;
 	double		deltaY;
 	void		*window;
@@ -91,6 +90,7 @@ typedef struct	s_data
 	unsigned int **buffer;
 }				t_data;
 
+//parsing
 void	free_double_array(char ***str);
 void	free_double_array2(unsigned int ***str);
 void	print_double_array(char **str);
@@ -100,15 +100,20 @@ int 	map_valid(char **map, t_parse *parse);
 int 	start_game(t_data *data);
 int 	endgame(void *pa);
 void 	free_memory(t_parse *parse, t_data *data);
-int 	move(int key, void *da);
-int 	init_attributes(t_data *data);
-int 	init_rays(t_data *data);
-int		init_buffer(t_data *data);
-void 	draw_player(t_data *data, int x, int y);
-void 	draw_map(t_data *data, char **map, int x, int y);
-int 	move_player(int key, void *da);
+
+//execution
 int 	start_ray_casting(t_data *data, t_ray *ray);
-void 	draw_rays(t_data *data, int n_rays, int i);
-void 	draw_line(t_data *data, int x1, int y1, int x2, int y2, int color);
+int 	put_pixels(t_data *data);
+int 	move(int key, void *da);
+int		init_buffer(t_data *data);
+int 	init_attributes(t_data *data);
+int 	is_wall(t_ray *ray, double x, double y, char **map);
+int 	pythagoras(t_ray *ray, double x, double y);
+int 	find_horizontal_intercept(t_ray *ray, char **map);
+int 	find_vertical_intercept(t_ray *ray, char **map);
+// void 	draw_player(t_data *data, int x, int y);
+// void 	draw_map(t_data *data, char **map, int x, int y);
+// void 	draw_rays(t_data *data, int n_rays, int i);
+// void 	draw_line(t_data *data, int x1, int y1, int x2, int y2, int color);
 
 #endif
