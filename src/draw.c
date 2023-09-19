@@ -43,7 +43,7 @@ int put_pixels(t_data *data)
 				data->addr[i * WIN_W + j] = data->buffer[i][j];
 		}
 	}
-	mlx_put_image_to_window(data->mlx, data->window, data->image, 0, 0);
+	mlx_put_image_to_window(data->window.mlx, data->window.win, data->image, 0, 0);
 	return (0);
 }
 
@@ -56,7 +56,7 @@ int put_pixels(t_data *data)
 //     int e2;
 
 //     while (x1 != x2 || y1 != y2) {
-//         mlx_pixel_put(data->mlx, data->window, x1, y1, color);
+// 		data->addr[y1 * data->window.map_width + x1] = color;
 //         if (x1 == x2 && y1 == y2)
 // 			break;
 //         e2 = 2 * err;
@@ -113,21 +113,63 @@ int put_pixels(t_data *data)
 // 	}
 // }
 
-// void draw_map(t_data *data, char **map, int x, int y)
-// {
-// 	int i, j;
+int draw_grid_lines(t_data *data, int win_width, int win_height)
+{
+	int color = 0x00000000;
+	int x = 0;
+	int y;
 
-// 	i = -1;
-// 	while (++i < y)
-// 	{
-// 		j = -1;
-// 		while (++j < x)
-// 		{
-// 			if (map[i/64][j/64] == '1')
-// 				data->addr[i * x + j] = 0x00FFFFFF;
-// 		}
-// 	}
-// 	mlx_put_image_to_window(data->mlx, data->window, data->image, 0, 0);
-// 	draw_grid_lines(data, x, y);
-// }
+	while (x < win_width)
+	{
+		y = -1;
+		while (++y < win_height)
+			data->addr[y * win_width + x] = color;
+		x += 64;
+	}
+
+	y = 0;
+	while (y < win_height)
+	{
+		x = 0;
+		while (++x < win_width)
+			data->addr[y * win_width + x] = color;
+		y += 64;
+	}
+	return (0);
+}
+
+int draw_player(t_data *data, int x, int y)
+{
+	int size = 5;  // Adjust the cube size as needed
+	int color = 0x00FF00;  // Green color (you can choose any color)
+	int i = -1;
+	int j;
+
+	while (++i < size)
+	{
+		j = -1;
+		while ( ++j < size)
+			data->addr[(y + j) * WIN_W + (x + i)] = color;
+	}
+	return (0);
+}
+
+void draw_map(t_data *data, char **map, int x, int y)
+{
+	int i, j;
+
+	i = -1;
+	while (++i < y)
+	{
+		j = -1;
+		while (++j < x)
+		{
+			if (map[i/64][j/64] == '1')
+				data->addr[i * x + j] = 0x00FFFFFF;
+		}
+	}
+	draw_grid_lines(data, x, y);
+	draw_player(data, data->player.x_pos, data->player.y_pos);
+	// mlx_clear_window(data->window.mlx, data->window.win);
+}
 

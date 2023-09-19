@@ -34,13 +34,13 @@ int get_elements(t_parse *parse, int i)
 	while (parse->text[++i])
 	{
 		if (!ft_strncmp(parse->text[i], "NO", 2))
-			parse->no_text = ft_substr(parse->text[i], 2, ft_strlen(parse->text[i]) - 2);
+			parse->no_text = ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
 		else if (!ft_strncmp(parse->text[i], "SO", 2))
-			parse->so_text = ft_substr(parse->text[i], 2, ft_strlen(parse->text[i]) - 2);
+			parse->so_text = ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
 		else if (!ft_strncmp(parse->text[i], "WE", 2))
-			parse->we_text = ft_substr(parse->text[i], 2, ft_strlen(parse->text[i]) - 2);
+			parse->we_text = ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
 		else if (!ft_strncmp(parse->text[i], "EA", 2))
-			parse->ea_text = ft_substr(parse->text[i], 2, ft_strlen(parse->text[i]) - 2);
+			parse->ea_text = ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
 		else if (parse->text[i][0] == 'F' || parse->text[i][0] == 'C')
 			if (get_colors(parse, parse->text[i], i) == -1)
 				return (0);

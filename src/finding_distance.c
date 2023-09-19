@@ -3,7 +3,7 @@
 int find_v_ray_wall_hit(t_ray *ray, char **map, double x_offset, double y_offset)
 {
 	int num = -1;
-	while (++num < 15)
+	while (++num < 30)
 	{
 		if (cos(ray->angle) > 0.0001)
 			ray->x_intercept += 0.001;
@@ -52,7 +52,7 @@ int find_vertical_intercept(t_ray *ray, char **map)
 int find_h_ray_wall_hit(t_ray *ray, char **map, double x_offset, double y_offset)
 {
 	int num = 0;
-	while (++num < 15)
+	while (++num < 30)
 	{
 		if (ray->angle > 0 && ray->angle < PI)
 			ray->y_intercept -= 0.0001;

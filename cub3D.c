@@ -27,11 +27,28 @@ void free_memory(t_parse *parse, t_data *data)
 		free_double_array(&parse->text);
 	if (parse->map)
 		free_double_array(&parse->map);
-	(void)data;
+	// (void)data;
+	if (data->buffer)
+		free_double_array2(&data->buffer);
 	// if (data->rays)
 	// 	free(data->rays);
-	// if (data->buffer)
-	// 	free_double_array2(&data->buffer);
+}
+
+int start_game(t_data *data)
+{
+	init_attributes(data);
+	data->window.mlx = mlx_init();
+	data->window.win = mlx_new_window(data->window.mlx, WIN_W, WIN_H, "Simple Window");
+	data->image = mlx_new_image(data->window.mlx, WIN_W, WIN_H);
+	data->addr = (int *)mlx_get_data_addr(data->image, &data->bits_per_pixel, 
+		&data->line_length, &data->endian);
+	if (!get_texture(data->parse, data))
+		return (0);
+	start_ray_casting(data, &data->ray);
+	mlx_hook(data->window.win, 2, 0, &move, data);
+	mlx_hook(data->window.win, 17, 1L << 17, &endgame, data);
+    mlx_loop(data->window.mlx);
+	return (1);
 }
 
 int main(int argc, char **argv)
@@ -48,7 +65,8 @@ int main(int argc, char **argv)
 	if (!parse_map(&parse))
 		return (free_memory(&parse, &data), 1);
 	data.parse = &parse;
-	start_game(&data);
+	if (!start_game(&data))
+		return (free_memory(&parse, &data), 1);
 	free_memory(&parse, &data);	
 	return (0);
 }
