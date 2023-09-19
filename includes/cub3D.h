@@ -104,7 +104,6 @@ typedef struct	s_data
 	t_ray 		ray;
 	t_player	player;
 	t_window	window;
-	double		plane_dist; 
 	double		angle_increment;
 	void		*image;
 	int			*addr;

@@ -60,14 +60,14 @@ int init_attributes(t_data *data)
 
 	data->window.map_width = data->parse->column*64;
 	data->window.map_height = data->parse->row*64;
-	data->plane_dist = 277.128;
 	data->ray.data = data;
-	data->angle_increment = (60.00 * PI / 180) / data->window.map_width;
+	data->angle_increment = (FOV * PI / 180) / WIN_W;
 	data->buffer = (unsigned int **)ft_calloc(WIN_H + 1, sizeof(unsigned int *));
 	i = -1;
 	while (++i < WIN_H)
 		data->buffer[i] = (unsigned int *)ft_calloc(WIN_W, sizeof(unsigned int));
 	find_player(data);
+	// printf("player x: %f, player y: %f, player angle: %f\n", data->player.x_pos, data->player.y_pos, data->player.angle);
 	data->player.deltaX = cos(data->player.angle)*STEP_SIZE;
 	data->player.deltaY = -sin(data->player.angle)*STEP_SIZE;
 	return (0);
