@@ -1,29 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/20 19:06:34 by Degef             #+#    #+#             */
+/*   Updated: 2023/09/20 19:11:52 by Degef            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3D.h"
 
-int invalid_chars_present(char **map, int i, int j)
+int	invalid_chars_present(char **map, int i, int j)
 {
+	int	flag;
+
+	flag = 0;
 	while (map[++i])
 	{
 		j = -1;
 		while (map[i][++j])
 		{
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'E' 
-				&& map[i][j] != 'W' && map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 32)
+				&& map[i][j] != 'W' && map[i][j] != 'N' && map[i][j] != 'S'
+				&& map[i][j] != 32)
 			{
-				printf("Error! Invalid character %c in map row:%d, colum:%d\n", map[i][j], i, j);
+				printf("Error! Invalid character %c in map\n", map[i][j]);
 				return (1);
 			}
+			if (map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'N' 
+				|| map[i][j] == 'S')
+				flag++;
+			if (flag > 1)
+				return (printf("Error! Multiple players in map\n"), 1);
 		}
 	}
 	return (0);
 }
 
-int check_top_border(char **map, int i, int j)
+int	check_top_border(char **map, int i, int j)
 {
 	while (map[0][++i])
 	{
 		if (map[0][i] == '1')
-			continue;
+			continue ;
 		else if (map[0][i] == 32)
 		{
 			while (map[j][i] == 32)
@@ -38,12 +59,12 @@ int check_top_border(char **map, int i, int j)
 	return (0);
 }
 
-int check_bottom_border(char **map, t_parse *parse, int i, int j)
+int	check_bottom_border(char **map, t_parse *parse, int i, int j)
 {
 	while (map[parse->row - 1][++i])
 	{
 		if (map[parse->row - 1][i] == '1')
-			continue;
+			continue ;
 		else if (map[parse->row - 1][i] == 32)
 		{
 			while (map[j][i] == 32)
@@ -58,19 +79,18 @@ int check_bottom_border(char **map, t_parse *parse, int i, int j)
 	return (0);
 }
 
-int check_left_border(char **map, int i, int j)
+int	check_left_border(char **map, int i, int j)
 {
 	while (map[++i])
 	{
 		if (map[i][0] == '1')
-			continue;
+			continue ;
 		else if (map[i][0] == 32)
 		{
 			while (map[i][j] == 32)
 				j++;
 			if (!map[i][j] || map[i][j] != '1')
 				return (printf("Error! left border not closed.\n"), 1);
-			
 		}
 		else 
 			return (printf("Error   ! left border not closed.\n"), 1);
@@ -79,13 +99,13 @@ int check_left_border(char **map, int i, int j)
 	return (0);
 }
 
-int check_right_border(char **map, int i, size_t j)
+int	check_right_border(char **map, int i, size_t j)
 {
 	while (map[++i])
 	{
 		j = ft_strlen(map[i]) - 1;
 		if (map[i][j] == '1')
-				continue;
+			continue ;
 		if (map[i][j] == 32)
 		{
 			while (map[i][j] == 32)
@@ -117,7 +137,7 @@ int check_left_to_right(char **map, t_parse *parse, int i, int j)
 				while (map[j][i] == 32)
 					i++;
 				if (map[j][i] != '1')
-					return (printf("Error! border not closed(left to right)\n"), 1);
+					return (printf("Error! border not closed\n"), 1);
 			}
 			else if (j > 0 && (map[j][i] == '0' || map[j][i] == 'E' 
 						|| map[j][i] == 'W' || map[j][i] == 'N' || map[j][i] == 'S'))

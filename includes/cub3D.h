@@ -1,8 +1,20 @@
-#ifndef CUB3D_H
-#define CUB3D_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
+/*   Updated: 2023/09/20 19:54:40 by Degef            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdio.h>
-#include "../libft/libft.h"
+#ifndef CUB3D_H
+# define CUB3D_H
+
+# include <stdio.h>
+# include "../libft/libft.h"
 # include <string.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -15,11 +27,11 @@
 # include "../mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
 
-# define WIN_W	640
+# define WIN_W	720
 # define WIN_H	520
-# define STEP_SIZE  20.00
+# define STEP_SIZE  30.00
 # define FOV 60.00
-# define ROTATION_ANGLE 0.19
+# define ROTATION_ANGLE 0.2
 # define PI 3.1415926535898
 # define CUBE_SIZE 64.00
 
@@ -117,34 +129,42 @@ typedef struct s_data
 	t_img			so_img;
 	t_img			we_img;
 	t_img			ea_img;
+	long long		oldTime;
+    long long		currentTime;
+    double			frameTime;
 }				t_data;
 
 //parsing
 void	free_double_array(char ***str);
 void	free_double_array2(unsigned int ***str);
 void	print_double_array(char **str);
-int 	read_map(t_parse *parse, const char* file_name);
-int 	parse_map(t_parse *parse);
-int 	map_valid(char **map, t_parse *parse);
-int 	start_game(t_data *data);
-int 	endgame(void *pa);
-void 	free_memory(t_parse *parse, t_data *data);
+int		read_map(t_parse *parse, const char *file_name);
+int		parse_map(t_parse *parse);
+int		map_valid(char **map, t_parse *parse);
+int		start_game(t_data *data);
+int		endgame(void *pa);
+void	free_memory(t_parse *parse, t_data *data);
 
 //execution
-int 	start_ray_casting(t_data *data, t_ray *ray);
-int 	put_pixels(t_data *data);
-int 	move(int key, void *da);
+int		start_ray_casting(t_data *data, t_ray *ray);
+int		put_pixels(t_data *data);
+int		move(int key, void *da);
 int		init_buffer(t_data *data);
-int 	init_attributes(t_data *data);
-int 	is_wall(t_ray *ray, double x, double y, char **map);
-int 	pythagoras(t_ray *ray, double x, double y);
-int 	find_horizontal_intercept(t_ray *ray, char **map);
-int 	find_vertical_intercept(t_ray *ray, char **map);
+int		init_attributes(t_data *data);
+int		is_wall(t_ray *ray, double x, double y, char **map);
+int		pythagoras(t_ray *ray, double x, double y);
+int		find_horizontal_intercept(t_ray *ray, char **map);
+int		find_vertical_intercept(t_ray *ray, char **map);
 int		get_texture(t_parse *parse, t_data *data);
-void 	draw_map(t_data *data, char **map, int x, int y);
+void	draw_map(t_data *data, char **map, int x, int y);
+int		find_draw_start_end(t_ray *ray, t_data *data, int x);
+void	select_ray(t_data *data, t_ray *ray, int x_intercept, int y_intercept);
+int		endgame(void *pa);
+void	rotate_left(t_data *data);
+void	rotate_right(t_data *data);
 // void 	draw_player(t_data *data, int x, int y);
 // void 	draw_map(t_data *data, char **map, int x, int y);
 // void 	draw_rays(t_data *data, int n_rays, int i);
-void 	draw_line(t_data *data, int x1, int y1, int x2, int y2, int color);
+// void		draw_line(t_data *data, int x1, int y1, int x2, int y2, int color);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/20 18:55:16 by Degef             #+#    #+#             */
+/*   Updated: 2023/09/20 18:57:10 by Degef            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3D.h"
 
 int	mark_player(t_data *data, int i, int j)
@@ -16,10 +28,10 @@ int	mark_player(t_data *data, int i, int j)
 	return (0);
 }
 
-int find_player(t_data *data)
+int	find_player(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < data->parse->num_lines)
@@ -27,18 +39,20 @@ int find_player(t_data *data)
 		j = -1;
 		while (data->parse->map[i][++j])
 		{
-			if (data->parse->map[i][j] == 'N' || data->parse->map[i][j] == 'S' 
-					|| data->parse->map[i][j] == 'E' || data->parse->map[i][j] == 'W')
+			if (data->parse->map[i][j] == 'N' 
+					|| data->parse->map[i][j] == 'S' 
+					|| data->parse->map[i][j] == 'E'
+					|| data->parse->map[i][j] == 'W')
 				return (mark_player(data, i, j));
 		}
 	}
 	return (0);
 }
 
-int init_buffer(t_data *data)
+int	init_buffer(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < WIN_H)
@@ -54,21 +68,22 @@ int init_buffer(t_data *data)
 	return (0);
 }
 
-int init_attributes(t_data *data)
+int	init_attributes(t_data *data)
 {
-	int i;
+	int	i;
 
-	data->window.map_width = data->parse->column*64;
-	data->window.map_height = data->parse->row*64;
+	data->window.map_width = data->parse->column * 64;
+	data->window.map_height = data->parse->row * 64;
 	data->ray.data = data;
 	data->angle_increment = (FOV * PI / 180) / WIN_W;
-	data->buffer = (unsigned int **)ft_calloc(WIN_H + 1, sizeof(unsigned int *));
+	data->buffer = (unsigned int **)ft_calloc(WIN_H + 1,
+			sizeof(unsigned int *));
 	i = -1;
 	while (++i < WIN_H)
-		data->buffer[i] = (unsigned int *)ft_calloc(WIN_W, sizeof(unsigned int));
+		data->buffer[i] = (unsigned int *)ft_calloc(WIN_W,
+				sizeof(unsigned int));
 	find_player(data);
-	// printf("player x: %f, player y: %f, player angle: %f\n", data->player.x_pos, data->player.y_pos, data->player.angle);
-	data->player.delta_x = cos(data->player.angle)*STEP_SIZE;
-	data->player.delta_y = -sin(data->player.angle)*STEP_SIZE;
+	data->player.delta_x = cos(data->player.angle) * STEP_SIZE;
+	data->player.delta_y = -sin(data->player.angle) * STEP_SIZE;
 	return (0);
 }

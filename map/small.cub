@@ -3,6 +3,9 @@ SO ./textures/stone_wall2.xpm
 WE ./textures/wall_1.xpm
 EA ./textures/eagle.xpm
 
+F 75,108,87
+C 173,216, 230
+
 111111111111111
 100010000000001
 100010000000001

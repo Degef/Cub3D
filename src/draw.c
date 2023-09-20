@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/20 19:13:14 by Degef             #+#    #+#             */
+/*   Updated: 2023/09/20 19:13:15 by Degef            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3D.h"
 
 int	is_ceiling(unsigned int **buffer, int i, int k)
@@ -24,10 +36,10 @@ int	is_floor(unsigned int **buffer, int i, int k)
 	return (1);
 }
 
-int put_pixels(t_data *data)
+int	put_pixels(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < WIN_H)
@@ -43,7 +55,8 @@ int put_pixels(t_data *data)
 				data->addr[i * WIN_W + j] = data->buffer[i][j];
 		}
 	}
-	mlx_put_image_to_window(data->window.mlx, data->window.win, data->image, 0, 0);
+	mlx_put_image_to_window(data->window.mlx, data->window.win,
+		data->image, 0, 0);
 	return (0);
 }
 
@@ -113,63 +126,63 @@ int put_pixels(t_data *data)
 // 	}
 // }
 
-int draw_grid_lines(t_data *data, int win_width, int win_height)
-{
-	int color = 0x00000000;
-	int x = 0;
-	int y;
+// int draw_grid_lines(t_data *data, int win_width, int win_height)
+// {
+// 	int color = 0x00000000;
+// 	int x = 0;
+// 	int y;
 
-	while (x < win_width)
-	{
-		y = -1;
-		while (++y < win_height)
-			data->addr[y * win_width + x] = color;
-		x += 64;
-	}
+// 	while (x < win_width)
+// 	{
+// 		y = -1;
+// 		while (++y < win_height)
+// 			data->addr[y * win_width + x] = color;
+// 		x += 64;
+// 	}
 
-	y = 0;
-	while (y < win_height)
-	{
-		x = 0;
-		while (++x < win_width)
-			data->addr[y * win_width + x] = color;
-		y += 64;
-	}
-	return (0);
-}
+// 	y = 0;
+// 	while (y < win_height)
+// 	{
+// 		x = 0;
+// 		while (++x < win_width)
+// 			data->addr[y * win_width + x] = color;
+// 		y += 64;
+// 	}
+// 	return (0);
+// }
 
-int draw_player(t_data *data, int x, int y)
-{
-	int size = 5;  // Adjust the cube size as needed
-	int color = 0x00FF00;  // Green color (you can choose any color)
-	int i = -1;
-	int j;
+// int draw_player(t_data *data, int x, int y)
+// {
+// 	int size = 5;  // Adjust the cube size as needed
+// 	int color = 0x00FF00;  // Green color (you can choose any color)
+// 	int i = -1;
+// 	int j;
 
-	while (++i < size)
-	{
-		j = -1;
-		while ( ++j < size)
-			data->addr[(y + j) * WIN_W + (x + i)] = color;
-	}
-	return (0);
-}
+// 	while (++i < size)
+// 	{
+// 		j = -1;
+// 		while ( ++j < size)
+// 			data->addr[(y + j) * WIN_W + (x + i)] = color;
+// 	}
+// 	return (0);
+// }
 
-void draw_map(t_data *data, char **map, int x, int y)
-{
-	int i, j;
+// void draw_map(t_data *data, char **map, int x, int y)
+// {
+// 	int i, j;
 
-	i = -1;
-	while (++i < y)
-	{
-		j = -1;
-		while (++j < x)
-		{
-			if (map[i/64][j/64] == '1')
-				data->addr[i * x + j] = 0x00FFFFFF;
-		}
-	}
-	draw_grid_lines(data, x, y);
-	draw_player(data, data->player.x_pos, data->player.y_pos);
-	// mlx_clear_window(data->window.mlx, data->window.win);
-}
+// 	i = -1;
+// 	while (++i < y)
+// 	{
+// 		j = -1;
+// 		while (++j < x)
+// 		{
+// 			if (map[i/64][j/64] == '1')
+// 				data->addr[i * x + j] = 0x00FFFFFF;
+// 		}
+// 	}
+// 	draw_grid_lines(data, x, y);
+// 	draw_player(data, data->player.x_pos, data->player.y_pos);
+// 	// mlx_clear_window(data->window.mlx, data->window.win);
+// }
 
