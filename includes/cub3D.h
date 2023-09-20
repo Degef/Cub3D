@@ -32,7 +32,7 @@
 # define LEFT 123
 # define RIGHT 124
 
-typedef struct	s_parse
+typedef struct s_parse
 {
 	char	**map;
 	int		num_lines;
@@ -41,30 +41,30 @@ typedef struct	s_parse
 	char	*so_text;
 	char	*we_text;
 	char	*ea_text;
-	int		floor[3]; //colors are in RBG (red, blue, green)
-	int		ceil[3]; //colors are in RBG (red, blue, green)
+	int		floor_color;
+	int		ceil_color;
 	int		map_size;
-	size_t		column;
-	size_t		row;
+	size_t	column;
+	size_t	row;
 	char	player_or;
 	int		nbr_str;
 }				t_parse;
 
 typedef struct s_ray {
-	double		angle;
-	struct s_data 		*data;
-	double		x;
-	double		y;
-	double 		x_intercept;
-	double 		y_intercept;
-	int 		h_wall_hit_flag;
-	int 		v_wall_hit_flag;
-	double		h_distance;
-	double		v_distance;
-	double		ray_length;
-	double		wall_height;
-	int			draw_start;
-	int			draw_end;
+	double			angle;
+	struct s_data	*data;
+	double			x;
+	double			y;
+	double			x_intercept;
+	double			y_intercept;
+	int				h_wall_hit_flag;
+	int				v_wall_hit_flag;
+	double			h_distance;
+	double			v_distance;
+	double			ray_length;
+	double			wall_height;
+	int				draw_start;
+	int				draw_end;
 }	t_ray;
 
 typedef struct s_img
@@ -86,8 +86,8 @@ typedef struct s_player
 	double		y_pos;
 	double		angle;
 	double		fov;
-	double		deltaX;
-	double		deltaY;
+	double		delta_x;
+	double		delta_y;
 }	t_player;
 
 typedef struct s_window
@@ -98,25 +98,25 @@ typedef struct s_window
 	int		map_height;
 }	t_window;
 
-typedef struct	s_data
+typedef struct s_data
 {
-	t_parse		*parse;
-	t_ray 		ray;
-	t_player	player;
-	t_window	window;
-	double		angle_increment;
-	void		*image;
-	int			*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	unsigned int **buffer;
-	int			previous;
-	t_img		texture;
-	t_img		no_img;
-	t_img		so_img;
-	t_img		we_img;
-	t_img		ea_img;
+	t_parse			*parse;
+	t_ray			ray;
+	t_player		player;
+	t_window		window;
+	double			angle_increment;
+	void			*image;
+	int				*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	unsigned int	**buffer;
+	int				previous;
+	t_img			texture;
+	t_img			no_img;
+	t_img			so_img;
+	t_img			we_img;
+	t_img			ea_img;
 }				t_data;
 
 //parsing

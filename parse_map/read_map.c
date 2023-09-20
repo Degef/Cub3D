@@ -1,24 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/20 15:30:27 by Degef             #+#    #+#             */
+/*   Updated: 2023/09/20 15:38:16 by Degef            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3D.h"
 
-void realloc_map(t_parse *parse)
+char	*substitute_tabs(char **line, char **new_line, int len, int j)
 {
-	char** temp;
-	int		i;
-
-    parse->num_lines++;
-	temp = ft_calloc(parse->num_lines + 1, sizeof(char*));
-	i = -1;
-	while (++i < parse->num_lines - 1)
-        temp[i] = ft_strdup(parse->text[i]);
-    // temp[parse->num_lines - 1] = NULL;
-    free_double_array(&parse->text);
-    parse->text = temp;
-}
-
-char *substitute_tabs(char **line, char **new_line, int len, int j)
-{
-	int i;
-	int k;
+	int	i;
+	int	k;
 
 	i = -1;
 	k = 0;
@@ -37,15 +34,15 @@ char *substitute_tabs(char **line, char **new_line, int len, int j)
 	return (*new_line);
 }
 
-void handle_tab(char **line, int i, int len, int tab_count)
+void	handle_tab(char **line, int i, int len, int tab_count)
 {
-	int new_len;
-	char *new_line;
+	int		new_len;
+	char	*new_line;
 
 	len = ft_strlen(*line);
 	while (++i < len)
 		if ((*line)[i] == '\t')
-            tab_count++;
+			tab_count++;
 	if (tab_count == 0)
 		return ;
 	new_len = len + (tab_count * 3);
@@ -53,32 +50,49 @@ void handle_tab(char **line, int i, int len, int tab_count)
 	*line = substitute_tabs(line, &new_line, len, 0);
 }
 
-int read_map(t_parse *parse, const char* file_name)
+int	count_lines(const char *file_name)
 {
-    int fd = open(file_name, O_RDONLY);
-    if (fd < 0) {
-        printf("Error! couldn't open file %s\n", file_name);
-        return 0;
-    }
-    parse->num_lines = 0;
-	parse->text = ft_calloc(1, sizeof(char *));
-    char* line = NULL;
+	int		i;
+	int		fd;
+	char	*line;
 
-    while (get_next_line(fd, &line))
+	i = 0;
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		return (printf("Error! couldn't open file %s\n", file_name), 0);
+	line = NULL;
+	while (get_next_line(fd, &line))
+		i++;
+	close(fd);
+	return (i);
+}
+
+int	read_map(t_parse *parse, const char *file_name)
+{
+	int		fd;
+	char	*line;
+	int		i;
+
+	i = -1;
+	parse->num_lines = count_lines(file_name);
+	if (parse->num_lines <= 0)
+		return (0);
+	parse->text = ft_calloc(parse->num_lines + 1, sizeof(char *));
+	fd = open(file_name, O_RDONLY);
+	while (get_next_line(fd, &line))
 	{
-        realloc_map((parse));
 		handle_tab(&line, -1, 0, 0);
 		if (line[0] == '\n')
-			parse->text[parse->num_lines - 1] = ft_strdup(line);
+			parse->text[++i] = ft_strdup(line);
 		else if (line[ft_strlen(line) - 1] == '\n')
-		    parse->text[parse->num_lines - 1] = ft_substr(line, 0, ft_strlen(line) - 1);
-		else 
-		    parse->text[parse->num_lines - 1] = ft_strdup(line);
-        free(line);
-    }
-    close(fd);
-	// int i = -1;
+			parse->text[++i] = ft_substr(line, 0, ft_strlen(line) - 1);
+		else
+			parse->text[++i] = ft_strdup(line);
+		free(line);
+	}
+	close(fd);
+	return (1);
+}
+	// i = -1;
 	// while (parse->text[++i])
 	// 	printf("%s\n", parse->text[i]);
-    return 1;
-}

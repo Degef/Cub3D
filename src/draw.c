@@ -36,9 +36,9 @@ int put_pixels(t_data *data)
 		while (++j < WIN_W)
 		{
 			if (is_ceiling(data->buffer, i, j))
-				data->addr[i * WIN_W + j] = 0xadd8e6;
+				data->addr[i * WIN_W + j] = data->parse->ceil_color;
 			else if (is_floor(data->buffer, i, j))
-				data->addr[i * WIN_W + j] = 0x4B6C57;
+				data->addr[i * WIN_W + j] = data->parse->floor_color;
 			else
 				data->addr[i * WIN_W + j] = data->buffer[i][j];
 		}
@@ -84,8 +84,8 @@ int put_pixels(t_data *data)
 // 		while ( ++j < size)
 //             mlx_pixel_put(data->mlx, data->window, x + i, y + j, color);
 // 	}
-//     double x2 = x + data->deltaX*5;
-//     double y2 = y + data->deltaY*5;
+//     double x2 = x + data->delta_x*5;
+//     double y2 = y + data->delta_y*5;
 //     draw_line(data, x, y, x2, y2, color);
 // }
 

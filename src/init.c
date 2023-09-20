@@ -68,7 +68,7 @@ int init_attributes(t_data *data)
 		data->buffer[i] = (unsigned int *)ft_calloc(WIN_W, sizeof(unsigned int));
 	find_player(data);
 	// printf("player x: %f, player y: %f, player angle: %f\n", data->player.x_pos, data->player.y_pos, data->player.angle);
-	data->player.deltaX = cos(data->player.angle)*STEP_SIZE;
-	data->player.deltaY = -sin(data->player.angle)*STEP_SIZE;
+	data->player.delta_x = cos(data->player.angle)*STEP_SIZE;
+	data->player.delta_y = -sin(data->player.angle)*STEP_SIZE;
 	return (0);
 }

@@ -8,6 +8,7 @@ int endgame(void *pa)
 
 	mlx_destroy_window(data->window.mlx, data->window.win);
 	mlx_destroy_image(data->window.mlx, data->image);
+	free_double_array2(&data->buffer);
 	free_memory(data->parse, data);
 	exit(0);
 }
@@ -17,12 +18,12 @@ static void move_forward(t_data *data)
 	int x;
 	int y;
 
-	x = (int)(data->player.x_pos + data->player.deltaX) / 64;
-	y = (int)(data->player.y_pos + data->player.deltaY) / 64;
+	x = (int)(data->player.x_pos + data->player.delta_x) / 64;
+	y = (int)(data->player.y_pos + data->player.delta_y) / 64;
 	if (data->parse->map[y][x] == '1')
 		return ;
-	data->player.y_pos += data->player.deltaY;
-	data->player.x_pos += data->player.deltaX;
+	data->player.y_pos += data->player.delta_y;
+	data->player.x_pos += data->player.delta_x;
 }
 
 static void move_backward(t_data *data)
@@ -30,12 +31,12 @@ static void move_backward(t_data *data)
 	int x;
 	int y;
 
-	x = (int)(data->player.x_pos - data->player.deltaX) / 64;
-	y = (int)(data->player.y_pos - data->player.deltaY) / 64;
+	x = (int)(data->player.x_pos - data->player.delta_x) / 64;
+	y = (int)(data->player.y_pos - data->player.delta_y) / 64;
 	if (data->parse->map[y][x] == '1')
 		return ;
-	data->player.y_pos -= data->player.deltaY;
-	data->player.x_pos -= data->player.deltaX;
+	data->player.y_pos -= data->player.delta_y;
+	data->player.x_pos -= data->player.delta_x;
 }
 
 static void move_left(t_data *data)
@@ -43,12 +44,12 @@ static void move_left(t_data *data)
 	int x;
 	int y;
 
-	x = (int)(data->player.x_pos - data->player.deltaY) / 64;
-	y = (int)(data->player.y_pos + data->player.deltaX) / 64;
+	x = (int)(data->player.x_pos - data->player.delta_y) / 64;
+	y = (int)(data->player.y_pos + data->player.delta_x) / 64;
 	if (data->parse->map[y][x] == '1')
 		return ;
-	data->player.y_pos += data->player.deltaX;
-	data->player.x_pos -= data->player.deltaY;
+	data->player.y_pos += data->player.delta_x;
+	data->player.x_pos -= data->player.delta_y;
 }
 
 static void move_right(t_data *data)
@@ -56,12 +57,12 @@ static void move_right(t_data *data)
 	int x;
 	int y;
 
-	x = (int)(data->player.x_pos + data->player.deltaY) / 64;
-	y = (int)(data->player.y_pos - data->player.deltaX) / 64;
+	x = (int)(data->player.x_pos + data->player.delta_y) / 64;
+	y = (int)(data->player.y_pos - data->player.delta_x) / 64;
 	if (data->parse->map[y][x] == '1')
 		return ;
-	data->player.y_pos -= data->player.deltaX;
-	data->player.x_pos += data->player.deltaY;
+	data->player.y_pos -= data->player.delta_x;
+	data->player.x_pos += data->player.delta_y;
 }
 
 static void rotate_left(t_data *data)
@@ -69,8 +70,8 @@ static void rotate_left(t_data *data)
 	data->player.angle -= ROTATION_ANGLE;
 	if (data->player.angle > 2 * PI)
 		data->player.angle -= 2 * PI;
-	data->player.deltaX = cos(data->player.angle)*STEP_SIZE;
-	data->player.deltaY = -sin(data->player.angle)*STEP_SIZE;
+	data->player.delta_x = cos(data->player.angle)*STEP_SIZE;
+	data->player.delta_y = -sin(data->player.angle)*STEP_SIZE;
 }
 
 static void rotate_right(t_data *data)
@@ -78,8 +79,8 @@ static void rotate_right(t_data *data)
 	data->player.angle += ROTATION_ANGLE;
 	if (data->player.angle < 0)
 		data->player.angle += 2 * PI;
-	data->player.deltaX = cos(data->player.angle)*STEP_SIZE;
-	data->player.deltaY = -sin(data->player.angle)*STEP_SIZE;
+	data->player.delta_x = cos(data->player.angle)*STEP_SIZE;
+	data->player.delta_y = -sin(data->player.angle)*STEP_SIZE;
 }
 
 int move(int key, void *da)

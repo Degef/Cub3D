@@ -27,11 +27,7 @@ void free_memory(t_parse *parse, t_data *data)
 		free_double_array(&parse->text);
 	if (parse->map)
 		free_double_array(&parse->map);
-	// (void)data;
-	if (data->buffer)
-		free_double_array2(&data->buffer);
-	// if (data->rays)
-	// 	free(data->rays);
+	(void)data;
 }
 
 int start_game(t_data *data)
@@ -51,13 +47,13 @@ int start_game(t_data *data)
 	return (1);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 	t_parse	parse;
 
 	if (argc < 2 || argc > 2)
-		return(printf("Error! Wrong input. Usage (./Cub3d ./map/map.cub)\n"), 1);
+		return (printf("Wrong input. Usage (./Cub3d ./map/map.cub)\n"), 1);
 	if (!is_cubfile(argv[1]))
 		return (printf("Error! map is not .cub file\n"), 1);
 	if (!read_map(&parse, argv[1]))
@@ -67,6 +63,7 @@ int main(int argc, char **argv)
 	data.parse = &parse;
 	if (!start_game(&data))
 		return (free_memory(&parse, &data), 1);
-	free_memory(&parse, &data);	
+	free_memory(&parse, &data);
+	(void)data;
 	return (0);
 }

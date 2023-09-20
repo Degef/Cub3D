@@ -1,8 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/20 16:13:30 by Degef             #+#    #+#             */
+/*   Updated: 2023/09/20 17:12:36 by Degef            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3D.h"
 
-int get_colors(t_parse *parse, char *color, int i)
+int	create_trgb(int r, int g, int b)
 {
-	char **splitted_color;
+	return (r << 16 | g << 8 | b);
+}
+
+int	get_colors(t_parse *parse, char *color, int i, int *arr)
+{
+	char	**splitted_color;
 
 	splitted_color = ft_split(color + 1, ',');
 	if (!splitted_color[0] || !splitted_color[1] || !splitted_color[2])
@@ -15,40 +32,48 @@ int get_colors(t_parse *parse, char *color, int i)
 	}
 	if (parse->text[i][0] == 'F')
 	{
-		parse->floor[0] = ft_atoi(splitted_color[0]) % 255;
-		parse->floor[1] = ft_atoi(splitted_color[2]) % 255;
-		parse->floor[2] = ft_atoi(splitted_color[1]) % 255;
+		arr[0] = ft_atoi(splitted_color[0]) % 256;
+		arr[1] = ft_atoi(splitted_color[1]) % 256;
+		arr[2] = ft_atoi(splitted_color[2]) % 256;
+		parse->floor_color = create_trgb(arr[0], arr[1], arr[2]);
 	}
 	else
 	{
-		parse->ceil[0] = ft_atoi(splitted_color[0]) % 255;
-		parse->ceil[1] = ft_atoi(splitted_color[2]) % 255;
-		parse->ceil[2] = ft_atoi(splitted_color[1]) % 255;
+		arr[0] = ft_atoi(splitted_color[0]) % 256;
+		arr[1] = ft_atoi(splitted_color[1]) % 256;
+		arr[2] = ft_atoi(splitted_color[2]) % 256;
+		parse->ceil_color = create_trgb(arr[0], arr[1], arr[2]);
 	}
 	free_double_array(&splitted_color);
 	return (0);
 }
 
-int get_elements(t_parse *parse, int i)
+int	get_elements(t_parse *parse, int i)
 {
+	int	arr[3];
+
 	while (parse->text[++i])
 	{
 		if (!ft_strncmp(parse->text[i], "NO", 2))
-			parse->no_text = ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
+			parse->no_text = 
+				ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
 		else if (!ft_strncmp(parse->text[i], "SO", 2))
-			parse->so_text = ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
+			parse->so_text = 
+				ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
 		else if (!ft_strncmp(parse->text[i], "WE", 2))
-			parse->we_text = ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
+			parse->we_text = 
+				ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
 		else if (!ft_strncmp(parse->text[i], "EA", 2))
-			parse->ea_text = ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
+			parse->ea_text = 
+				ft_substr(parse->text[i], 3, ft_strlen(parse->text[i]) - 2);
 		else if (parse->text[i][0] == 'F' || parse->text[i][0] == 'C')
-			if (get_colors(parse, parse->text[i], i) == -1)
+			if (get_colors(parse, parse->text[i], i, arr) == -1)
 				return (0);
 	}
 	return (1);
 }
 
-void get_map(t_parse *parse, int i, int j)
+void	get_map(t_parse *parse, int i, int j)
 {
 	while (parse->text[i][0] == 'N' || parse->text[i][0] == 'S' 
 			|| parse->text[i][0] == 'E' || parse->text[i][0] == 'W' 
@@ -67,12 +92,12 @@ void get_map(t_parse *parse, int i, int j)
 	parse->row = j;
 }
 
-void init_map(t_parse *parse)
+void	init_map(t_parse *parse)
 {
-	parse->no_text = 0;
-	parse->so_text = 0;
-	parse->we_text = 0;
-	parse->ea_text = 0;
+	parse->no_text = NULL;
+	parse->so_text = NULL;
+	parse->we_text = NULL;
+	parse->ea_text = NULL;
 	parse->map = 0;
 }
 
