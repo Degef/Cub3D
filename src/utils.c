@@ -32,3 +32,16 @@ int get_texture(t_parse *parse, t_data *data)
 	data->ea_img.addr = (int *)mlx_get_data_addr(data->ea_img.img, &data->ea_img.bits_per_pixel, &data->ea_img.line_length, &data->ea_img.endian);
 	return (1);
 }
+
+int	fix_fish_eye(t_ray *ray, double player_angle)
+{
+	double	angle;
+
+	angle = ray->angle - player_angle;
+	if (angle < 0)
+		angle += 2 * PI;
+	if (angle > 2 * PI)
+		angle -= 2 * PI;
+	ray->ray_length = ray->ray_length * cos(angle);
+	return (0);
+}

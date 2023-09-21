@@ -5,7 +5,7 @@ MLXMAC		= ./mlx/
 MLXLINUX	= ./mlx_linux/
 FILES 		= cub3D.c ./parse_map/parsing_utils.c ./parse_map/parse_map.c ./parse_map/read_map.c ./parse_map/validate_map.c   \
 				./src/start_raycast.c ./src/hooks.c ./src/init.c  ./src/draw.c ./src/utils.c ./src/finding_distance.c \
-				./src/draw_texture.c ./src/hooks2.c
+				./src/draw_texture.c ./src/hooks2.c ./src/minimap.c 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -g
 sanitize    = -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls

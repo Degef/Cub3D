@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/21 14:53:49 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/21 18:54:20 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,14 @@ typedef struct s_keys {
 	int		right;
 }	t_keys;
 
+typedef struct s_image {
+	void	*img;
+	int		*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_image;
+
 typedef struct s_data
 {
 	t_parse			*parse;
@@ -131,11 +139,8 @@ typedef struct s_data
 	t_window		window;
 	t_keys			keys;
 	double			angle_increment;
-	void			*image;
-	int				*addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
+	t_image			image;
+	t_image			mini_map;
 	unsigned int	**buffer;
 	int				previous;
 	t_img			texture;
@@ -143,9 +148,6 @@ typedef struct s_data
 	t_img			so_img;
 	t_img			we_img;
 	t_img			ea_img;
-	long long		oldTime;
-    long long		currentTime;
-    double			fps;
 }				t_data;
 
 //parsing
@@ -172,6 +174,8 @@ int		find_horizontal_intercept(t_ray *ray, char **map);
 int		find_vertical_intercept(t_ray *ray, char **map);
 int		get_texture(t_parse *parse, t_data *data);
 void	draw_map(t_data *data, char **map, int x, int y);
+void	draw_mini_map(t_data *data);
+int		fix_fish_eye(t_ray *ray, double player_angle);
 int		find_draw_start_end(t_ray *ray, t_data *data, int x);
 void	select_ray(t_data *data, t_ray *ray, int x_intercept, int y_intercept);
 int		endgame(void *pa);

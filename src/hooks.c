@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:13:25 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/21 14:58:01 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/21 15:21:27 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,48 +62,6 @@ static void	move_right(t_data *data)
 		return ;
 	data->player.x_pos -= data->player.delta_y;
 	data->player.y_pos += data->player.delta_x;
-}
-
-int	key_release(int key, void *da)
-{
-	t_data	*data;
-
-	data = (t_data *)da;
-	if (key == W)
-		data->keys.w = 0;
-	else if (key == S)
-		data->keys.s = 0;
-	else if (key == A)
-		data->keys.a = 0;
-	else if (key == D)
-		data->keys.d = 0;
-	else if (key == LEFT)
-		data->keys.left = 0;
-	else if (key == RIGHT)
-		data->keys.right = 0;
-	return (0);
-}
-
-int	keypress(int key, void *da)
-{
-	t_data	*data;
-
-	data = (t_data *)da;
-	if (key == ESC)
-		endgame(data);
-	else if (key == W)
-		data->keys.w = 1;
-	else if (key == S)
-		data->keys.s = 1;
-	else if (key == A)
-		data->keys.a = 1;
-	else if (key == D)
-		data->keys.d = 1;
-	else if (key == LEFT)
-		data->keys.left = 1;
-	else if (key == RIGHT)
-		data->keys.right = 1;
-	return (0);
 }
 
 int	main_loop(void *da)

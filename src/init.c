@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:55:16 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/21 14:44:29 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/21 16:55:38 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ int	init_attributes(t_data *data)
 	find_player(data);
 	data->player.delta_x = cos(data->player.angle) * STEP_SIZE;
 	data->player.delta_y = -sin(data->player.angle) * STEP_SIZE;
-	data->currentTime = 0;
-	data->oldTime = 0;
 	init_keys(data);
 	return (0);
 }

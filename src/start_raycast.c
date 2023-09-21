@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:30:59 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/20 19:20:28 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/21 18:52:10 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,6 @@ int	init_rays(t_data *data)
 		data->ray.angle += 2 * PI;
 	data->ray.x = data->player.x_pos;
 	data->ray.y = data->player.y_pos;
-	return (0);
-}
-
-int	fix_fish_eye(t_ray *ray, double player_angle)
-{
-	double	angle;
-
-	angle = ray->angle - player_angle;
-	if (angle < 0)
-		angle += 2 * PI;
-	if (angle > 2 * PI)
-		angle -= 2 * PI;
-	ray->ray_length = ray->ray_length * cos(angle);
 	return (0);
 }
 
@@ -73,7 +60,16 @@ void	select_ray(t_data *data, t_ray *ray,
 	}
 	else
 		select_ray2(data, ray, x_intercept, y_intercept);
+}
 
+void	draw_game(t_data *data)
+{
+	put_pixels(data);
+	draw_mini_map(data);
+	mlx_put_image_to_window(data->window.mlx, data->window.win,
+		data->image.img, 0, 0);
+	mlx_put_image_to_window(data->window.mlx, data->window.win,
+		data->mini_map.img, 0, 0);
 }
 
 int	start_ray_casting(t_data *data, t_ray *ray)
@@ -100,6 +96,6 @@ int	start_ray_casting(t_data *data, t_ray *ray)
 		if (data->ray.angle < 0)
 			data->ray.angle += 2 * PI;
 	}
-	put_pixels(data);
+	draw_game(data);
 	return (0);
 }
