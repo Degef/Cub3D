@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/20 19:54:40 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/21 14:53:49 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@
 # include "../mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
 
+# define X_EVENT_KEY_PRESS		2
+# define X_EVENT_KEY_RELEASE	3
+# define X_EVENT_EXIT			17
+
 # define WIN_W	720
 # define WIN_H	520
 # define STEP_SIZE  30.00
 # define FOV 60.00
-# define ROTATION_ANGLE 0.2
+# define ROTATION_ANGLE 0.19
 # define PI 3.1415926535898
 # define CUBE_SIZE 64.00
 
@@ -110,12 +114,22 @@ typedef struct s_window
 	int		map_height;
 }	t_window;
 
+typedef struct s_keys {
+	int		w;
+	int		a;
+	int		s;
+	int		d;
+	int		left;
+	int		right;
+}	t_keys;
+
 typedef struct s_data
 {
 	t_parse			*parse;
 	t_ray			ray;
 	t_player		player;
 	t_window		window;
+	t_keys			keys;
 	double			angle_increment;
 	void			*image;
 	int				*addr;
@@ -131,7 +145,7 @@ typedef struct s_data
 	t_img			ea_img;
 	long long		oldTime;
     long long		currentTime;
-    double			frameTime;
+    double			fps;
 }				t_data;
 
 //parsing
@@ -148,7 +162,8 @@ void	free_memory(t_parse *parse, t_data *data);
 //execution
 int		start_ray_casting(t_data *data, t_ray *ray);
 int		put_pixels(t_data *data);
-int		move(int key, void *da);
+int		keypress(int key, void *da);
+int		key_release(int key_code, void *da);
 int		init_buffer(t_data *data);
 int		init_attributes(t_data *data);
 int		is_wall(t_ray *ray, double x, double y, char **map);
@@ -162,6 +177,7 @@ void	select_ray(t_data *data, t_ray *ray, int x_intercept, int y_intercept);
 int		endgame(void *pa);
 void	rotate_left(t_data *data);
 void	rotate_right(t_data *data);
+int		main_loop(void *da);
 // void 	draw_player(t_data *data, int x, int y);
 // void 	draw_map(t_data *data, char **map, int x, int y);
 // void 	draw_rays(t_data *data, int n_rays, int i);

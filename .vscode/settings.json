@@ -8,6 +8,8 @@
 		"vector": "c",
 		"complex": "c",
 		"__node_handle": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"chrono": "c",
+		"ctime": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:57:28 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/20 18:57:31 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/21 14:37:36 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ int	start_game(t_data *data)
 	if (!get_texture(data->parse, data))
 		return (0);
 	start_ray_casting(data, &data->ray);
-	mlx_hook(data->window.win, 2, 0, &move, data);
+	mlx_hook(data->window.win, 2, 0, &keypress, data);
+	mlx_hook(data->window.win, 3, 0, &key_release, data);
 	mlx_hook(data->window.win, 17, 1L << 17, &endgame, data);
+	mlx_loop_hook(data->window.mlx, &main_loop, data);
 	mlx_loop(data->window.mlx);
 	return (1);
 }

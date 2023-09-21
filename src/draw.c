@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:13:14 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/20 19:13:15 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/21 15:18:00 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ int	put_pixels(t_data *data)
 				data->addr[i * WIN_W + j] = data->parse->floor_color;
 			else
 				data->addr[i * WIN_W + j] = data->buffer[i][j];
+			if (i > WIN_H / 2 - 8 && i < WIN_H / 2 + 8 && j == WIN_W / 2)
+				data->addr[i * WIN_W + j] = 0x00FF00;
+			if (j > WIN_W / 2 - 8 && j < WIN_W / 2 + 8 && i == WIN_H / 2)
+				data->addr[i * WIN_W + j] = 0x00FF00;
 		}
 	}
 	mlx_put_image_to_window(data->window.mlx, data->window.win,
