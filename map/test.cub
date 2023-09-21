@@ -3,6 +3,9 @@ SO ./textures/purplestone.xpm
 WE ./textures/bluestone.xpm
 EA ./textures/wood.xpm
 
+F 75,108,87
+C 173,216, 230
+
 1111111111111
 1000100000001
 1000100000001

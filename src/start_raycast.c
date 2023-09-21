@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:30:59 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/21 18:52:10 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/21 19:15:49 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	select_ray(t_data *data, t_ray *ray,
 void	draw_game(t_data *data)
 {
 	put_pixels(data);
-	draw_mini_map(data);
+	draw_mini_map(data, data->parse->map, data->parse->column * 8,
+		data->parse->row * 8);
 	mlx_put_image_to_window(data->window.mlx, data->window.win,
 		data->image.img, 0, 0);
 	mlx_put_image_to_window(data->window.mlx, data->window.win,

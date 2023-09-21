@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:57:28 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/21 18:41:48 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/21 19:11:53 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ int	start_game(t_data *data)
 	data->window.win = mlx_new_window(data->window.mlx, WIN_W, WIN_H, "Cub3D");
 	data->image.img = mlx_new_image(data->window.mlx, WIN_W, WIN_H);
 	data->image.addr = (int *)mlx_get_data_addr(data->image.img,
-			&data->image.bits_per_pixel, 
+			&data->image.bpp, 
 			&data->image.line_length, &data->image.endian);
 	data->mini_map.img = mlx_new_image(data->window.mlx,
 			data->parse->column * 8, data->parse->row * 8);
 	data->mini_map.addr = (int *)mlx_get_data_addr(data->mini_map.img,
-			&data->mini_map.bits_per_pixel,
+			&data->mini_map.bpp,
 			&data->mini_map.line_length, &data->mini_map.endian);
 	if (!get_texture(data->parse, data))
 		return (0);
