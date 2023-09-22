@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:13:14 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/21 17:03:33 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/22 14:07:54 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,24 @@ int	is_floor(unsigned int **buffer, int i, int k)
 	return (1);
 }
 
+void	update_image(t_data *data, int j, int i)
+{
+	if (is_ceiling(data->buffer, i, j))
+		data->image.addr[i * WIN_W + j] = data->parse->ceil_color;
+	else if (is_floor(data->buffer, i, j))
+		data->image.addr[i * WIN_W + j] = data->parse->floor_color;
+	else
+		data->image.addr[i * WIN_W + j] = data->buffer[i][j];
+	if (((i > WIN_H / 2 - 8 && i < WIN_H / 2 - 3)
+			|| (i > WIN_H / 2 + 3 && i < WIN_H / 2 + 8))
+		&& j == WIN_W / 2)
+		data->image.addr[i * WIN_W + j] = 0x00FF00;
+	if (((j > WIN_W / 2 - 8 && j < WIN_W / 2 - 3)
+			|| (j > WIN_W / 2 + 3 && j < WIN_W / 2 + 8))
+		&& i == WIN_H / 2)
+		data->image.addr[i * WIN_W + j] = 0x00FF00;
+}
+
 int	put_pixels(t_data *data)
 {
 	int	i;
@@ -46,22 +64,7 @@ int	put_pixels(t_data *data)
 	{
 		j = -1;
 		while (++j < WIN_W)
-		{
-			if (is_ceiling(data->buffer, i, j))
-				data->image.addr[i * WIN_W + j] = data->parse->ceil_color;
-			else if (is_floor(data->buffer, i, j))
-				data->image.addr[i * WIN_W + j] = data->parse->floor_color;
-			else
-				data->image.addr[i * WIN_W + j] = data->buffer[i][j];
-			if (((i > WIN_H / 2 - 8 && i < WIN_H / 2 - 3)
-					|| (i > WIN_H / 2 + 3 && i < WIN_H / 2 + 8))
-				&& j == WIN_W / 2)
-				data->image.addr[i * WIN_W + j] = 0x00FF00;
-			if (((j > WIN_W / 2 - 8 && j < WIN_W / 2 - 3)
-					|| (j > WIN_W / 2 + 3 && j < WIN_W / 2 + 8))
-				&& i == WIN_H / 2)
-				data->image.addr[i * WIN_W + j] = 0x00FF00;
-		}
+			update_image(data, j, i);
 	}
 	data->image.addr[WIN_H / 2 * WIN_W + WIN_W / 2] = 0x00FF00;
 	return (0);

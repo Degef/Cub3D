@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/21 19:16:05 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/22 16:05:07 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define WIN_H	520
 # define STEP_SIZE  30.00
 # define FOV 60.00
-# define ROTATION_ANGLE 0.19
+# define ROTATION_ANGLE 0.17
 # define PI 3.1415926535898
 # define CUBE_SIZE 64.00
 
@@ -73,6 +73,7 @@ typedef struct s_ray {
 	double			y;
 	double			x_intercept;
 	double			y_intercept;
+	int				intercepts[2];
 	int				h_wall_hit_flag;
 	int				v_wall_hit_flag;
 	double			h_distance;
@@ -131,6 +132,20 @@ typedef struct s_image {
 	int		endian;
 }	t_image;
 
+typedef struct s_draw_line {
+	int		x1;
+	int		y1;
+	int		x2;
+	int		y2;
+	int		dx;
+	int		dy;
+	int		sx;
+	int		sy;
+	int		err;
+	int		e2;
+	int		color;
+}	t_draw_line;
+
 typedef struct s_data
 {
 	t_parse			*parse;
@@ -148,6 +163,7 @@ typedef struct s_data
 	t_img			so_img;
 	t_img			we_img;
 	t_img			ea_img;
+	t_draw_line		draw_line;
 }				t_data;
 
 //parsing
@@ -166,8 +182,9 @@ int		start_ray_casting(t_data *data, t_ray *ray);
 int		put_pixels(t_data *data);
 int		keypress(int key, void *da);
 int		key_release(int key_code, void *da);
-int		init_buffer(t_data *data);
 int		init_attributes(t_data *data);
+int		init_buffer(t_data *data);
+int		init_rays(t_data *data);
 int		is_wall(t_ray *ray, double x, double y, char **map);
 int		pythagoras(t_ray *ray, double x, double y);
 int		find_horizontal_intercept(t_ray *ray, char **map);
@@ -181,9 +198,6 @@ int		endgame(void *pa);
 void	rotate_left(t_data *data);
 void	rotate_right(t_data *data);
 int		main_loop(void *da);
-// void 	draw_player(t_data *data, int x, int y);
-// void 	draw_map(t_data *data, char **map, int x, int y);
-// void 	draw_rays(t_data *data, int n_rays, int i);
-// void		draw_line(t_data *data, int x1, int y1, int x2, int y2, int color);
+void	draw_ray(t_data *data, int x1, int y1, int *pos2);
 
 #endif

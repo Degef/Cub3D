@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:13:14 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/21 19:13:15 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/22 15:22:56 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,17 @@ int	fix_fish_eye(t_ray *ray, double player_angle)
 	if (angle > 2 * PI)
 		angle -= 2 * PI;
 	ray->ray_length = ray->ray_length * cos(angle);
+	return (0);
+}
+
+int	init_rays(t_data *data)
+{
+	data->ray.angle = data->player.angle + (FOV * PI / 180) / 2.0;
+	if (data->ray.angle > 2 * PI)
+		data->ray.angle -= 2 * PI;
+	if (data->ray.angle < 0)
+		data->ray.angle += 2 * PI;
+	data->ray.x = data->player.x_pos;
+	data->ray.y = data->player.y_pos;
 	return (0);
 }

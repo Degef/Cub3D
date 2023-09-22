@@ -6,23 +6,11 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:30:59 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/21 19:15:49 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/22 16:01:55 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-int	init_rays(t_data *data)
-{
-	data->ray.angle = data->player.angle + (FOV * PI / 180) / 2.0;
-	if (data->ray.angle > 2 * PI)
-		data->ray.angle -= 2 * PI;
-	if (data->ray.angle < 0)
-		data->ray.angle += 2 * PI;
-	data->ray.x = data->player.x_pos;
-	data->ray.y = data->player.y_pos;
-	return (0);
-}
 
 void	select_ray2(t_data *data, t_ray *ray,
 			int x_intercept, int y_intercept)
@@ -60,17 +48,25 @@ void	select_ray(t_data *data, t_ray *ray,
 	}
 	else
 		select_ray2(data, ray, x_intercept, y_intercept);
+	ray->intercepts[0] = ray->x_intercept / 64 * 8;
+	ray->intercepts[1] = ray->y_intercept / 64 * 8;
 }
 
 void	draw_game(t_data *data)
 {
 	put_pixels(data);
-	draw_mini_map(data, data->parse->map, data->parse->column * 8,
-		data->parse->row * 8);
 	mlx_put_image_to_window(data->window.mlx, data->window.win,
 		data->image.img, 0, 0);
 	mlx_put_image_to_window(data->window.mlx, data->window.win,
 		data->mini_map.img, 0, 0);
+}
+
+void	start_initializers(t_data *data)
+{
+	init_rays(data);
+	init_buffer(data);
+	draw_mini_map(data, data->parse->map, data->parse->column * 8,
+		data->parse->row * 8);
 }
 
 int	start_ray_casting(t_data *data, t_ray *ray)
@@ -80,8 +76,7 @@ int	start_ray_casting(t_data *data, t_ray *ray)
 	int	y_intercept;
 
 	i = -1;
-	init_rays(data);
-	init_buffer(data);
+	start_initializers(data);
 	while (++i < WIN_W)
 	{
 		find_horizontal_intercept(ray, data->parse->map);
@@ -91,6 +86,7 @@ int	start_ray_casting(t_data *data, t_ray *ray)
 		select_ray(data, ray, x_intercept, y_intercept);
 		fix_fish_eye(ray, data->player.angle);
 		find_draw_start_end(ray, data, i);
+		draw_ray(data, ray->x / 64 * 8, ray->y / 64 * 8, ray->intercepts);
 		ray->angle -= data->angle_increment;
 		if (data->player.angle > 2 * PI)
 			data->player.angle -= 2 * PI;
