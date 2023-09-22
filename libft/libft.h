@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1024
 # endif
 
 typedef struct s_list
@@ -91,5 +91,7 @@ char	*ft_new_main_str(char *main_str);
 char	*ft_get_line(char *main_str);
 char	*get_next_line(int fd, char **result);
 char	*read_to_main_str(int fd, char *main_str);
+
+char	*get_next_line_3(int fd);
 
 #endif

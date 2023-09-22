@@ -1,10 +1,10 @@
-NO ./textures/redbrick.xpm
-SO ./textures/purplestone.xpm
-WE ./textures/bluestone.xpm
-EA ./textures/wood.xpm
+NO ./textures/dark1.xpm
+SO ./textures/dark2.xpm
+WE ./textures/dark1.xpm
+EA ./textures/dark2.xpm
 
-F 75,108,87
-C 173,216, 230
+F 128, 128, 128
+C 0, 0, 0
 
 1111111111111
 1000100000001

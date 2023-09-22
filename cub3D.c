@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:57:28 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/21 19:11:53 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/22 21:16:39 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int	start_game(t_data *data)
 	if (!get_texture(data->parse, data))
 		return (0);
 	start_ray_casting(data, &data->ray);
-	mlx_hook(data->window.win, 2, 0, &keypress, data);
-	mlx_hook(data->window.win, 3, 0, &key_release, data);
-	mlx_hook(data->window.win, 17, 1L << 17, &endgame, data);
+	mlx_hook(data->window.win, X_EVENT_KEY_PRESS, 0, &keypress, data);
+	mlx_hook(data->window.win, X_EVENT_KEY_RELEASE, 0, &key_release, data);
+	mlx_hook(data->window.win, X_EVENT_EXIT, 1L << 17, &endgame, data);
 	mlx_loop_hook(data->window.mlx, &main_loop, data);
 	mlx_loop(data->window.mlx);
 	return (1);
@@ -76,10 +76,14 @@ int	main(int argc, char **argv)
 		return (printf("Wrong input. Usage (./Cub3d ./map/map.cub)\n"), 1);
 	if (!is_cubfile(argv[1]))
 		return (printf("Error! map is not .cub file\n"), 1);
-	if (!read_map(&parse, argv[1]))
-		return (1);
-	if (!parse_map(&parse))
-		return (free_memory(&parse, &data), 1);
+	if (!ft_parse(&parse, argv[1])) 
+	{
+		return (EXIT_FAILURE);
+	}
+	// if (!read_map(&parse, argv[1]))
+	// 	return (1);
+	// if (!parse_map(&parse))
+	// 	return (free_memory(&parse, &data), 1);
 	data.parse = &parse;
 	if (!start_game(&data))
 		return (free_memory(&parse, &data), 1);

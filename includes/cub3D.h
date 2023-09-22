@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/22 16:05:07 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/22 22:48:44 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 # include <string.h>
+# include <stdbool.h>
+# include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <ctype.h>
@@ -26,6 +28,7 @@
 # include <math.h>
 # include "../mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
+
 
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_RELEASE	3
@@ -48,22 +51,53 @@
 # define LEFT 123
 # define RIGHT 124
 
+enum e_tex_idx
+{
+	NORTH = 0,
+	SOUTH,
+	EAST,
+	WEST
+};
+
+enum e_out
+{
+	SUCCESS = 0,
+	FAILURE = 1,
+	ERR = 2,
+	BR = 3,
+	CONTINUE = 4
+};
+
+typedef struct s_imap
+{
+	int		fd;
+	int		line_count;
+	char	*path;
+	char	**file;
+	int		height;
+	int		width;
+	int		end_idx;
+}	t_imap;
+
 typedef struct s_parse
 {
-	char	**map;
-	int		num_lines;
-	char	**text;
-	char	*no_text;
-	char	*so_text;
-	char	*we_text;
-	char	*ea_text;
-	int		floor_color;
-	int		ceil_color;
-	int		map_size;
-	size_t	column;
-	size_t	row;
-	char	player_or;
-	int		nbr_str;
+	char			**map;
+	int				num_lines;
+	char			**text;
+	char			*no_text;
+	char			*so_text;
+	char			*we_text;
+	char			*ea_text;
+	int				floor_color;
+	int				ceil_color;
+	size_t			column;
+	size_t			row;
+	int				*floor;
+	int				*ceiling;
+	unsigned long	hex_floor;
+	unsigned long	hex_ceiling;
+	char			pdir;
+	t_imap			imap;
 }				t_parse;
 
 typedef struct s_ray {
@@ -167,15 +201,28 @@ typedef struct s_data
 }				t_data;
 
 //parsing
+void	free_memory(t_parse *parse, t_data *data);
 void	free_double_array(char ***str);
 void	free_double_array2(unsigned int ***str);
-void	print_double_array(char **str);
-int		read_map(t_parse *parse, const char *file_name);
-int		parse_map(t_parse *parse);
-int		map_valid(char **map, t_parse *parse);
-int		start_game(t_data *data);
-int		endgame(void *pa);
-void	free_memory(t_parse *parse, t_data *data);
+int		print_err(char *info, char *str, int code);
+void	initialize_imap(t_imap *inputmap);
+void	void_free_arr(void **str);
+int		ft_parse(t_parse *parse, char *path);
+int		print_err_val(int detail, char *str, int code);
+void	parse_map_file(char *path, t_parse *parse);
+int		fill_dir_tex(t_parse *parse, char *line, int j);
+int		fill_color_textures(t_parse *parse, char *line, int j);
+int		check_map_ifvalid(t_parse *parse, char **map);
+int		check_mapfile(char *arg, bool cub);
+int		check_texture(t_parse *parse);
+int		get_file(t_parse *parse, char **map);
+int		check_map_elements(t_parse *parse, char **map_tab);
+int		check_map_is_at_the_end(t_imap *map);
+int		create_map(t_parse *parse, char **file, int i);
+size_t	find_biggest_len(t_imap *map, int i);
+void	initialize_parse_vars(t_parse *parse);
+void	duplicate_parse(t_parse *parse);
+
 
 //execution
 int		start_ray_casting(t_data *data, t_ray *ray);
