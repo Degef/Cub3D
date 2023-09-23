@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_init.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:38:45 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/22 20:32:50 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/23 18:30:51 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	duplicate_parse(t_parse *parse)
 	parse->text = parse->imap.file;
 	parse->column = parse->imap.width;
 	parse->row = parse->imap.height;
-	parse->ceil_color = parse->hex_ceiling;
-	parse->floor_color = parse->hex_floor;
 }
 
 void	initialize_parse_vars(t_parse *parse)
@@ -41,6 +39,4 @@ void	initialize_parse_vars(t_parse *parse)
 	parse->ea_text = NULL;
 	parse->floor = 0;
 	parse->ceiling = 0;
-	parse->hex_floor = 0x0;
-	parse->hex_ceiling = 0x0;
 }

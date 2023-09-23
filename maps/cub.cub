@@ -1,10 +1,10 @@
 NO ./textures/gradient2.xpm
-SO ./textures/gradient1.xpm
+SO ./textures/purplestone.xpm
 WE ./textures/gradient3.xpm
 EA ./textures/gradient4.xpm
 
 F 0,0,0
-C 0,0, 0
+C 0,0,0
 
 		1111111111111111111111111
 		1000000000110000001000001

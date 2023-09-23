@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:47:55 by mkiflema          #+#    #+#             */
-/*   Updated: 2023/02/11 16:32:48 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/09/23 18:18:20 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static int	ft_pointer(unsigned long long n, char format)
 		if (format == 'X')
 			res += ft_putchar (reminder + 'A' - 10);
 		else
-		res += ft_putchar (reminder + 'a' - 10);
-	}	
+			res += ft_putchar (reminder + 'a' - 10);
+	}
 	return (res);
 }
 

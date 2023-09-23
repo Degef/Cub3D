@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:46:35 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 15:58:53 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/23 18:26:07 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static void	dup_map_file(int row, int column, int i, t_parse *parse)
 		if (ft_strchr(line, '\n') != 0)
 			parse->imap.file[row] = ft_calloc(ft_strlen(line), sizeof(char));
 		else
-			parse->imap.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
+			parse->imap.file[row] = ft_calloc(ft_strlen(line) + 1,
+					sizeof(char));
 		if (!parse->imap.file[row])
 		{
 			print_err(NULL, "Couldn't allocate memory", 0);
@@ -69,7 +70,6 @@ static void	dup_map_file(int row, int column, int i, t_parse *parse)
 		}
 		while (line[i] != '\n' && line[i] != '\0')
 			parse->imap.file[row][column++] = line[i++];
-		// printf("line = [%s]\n", parse->imap.file[row]);
 		parse->imap.file[row++][column] = '\0';
 		column = 0;
 		i = 0;

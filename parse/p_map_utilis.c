@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_map_utilis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:02:51 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 15:18:46 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/23 18:25:13 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	ignore_spaces(t_parse *parse, char **map, int i, int j)
 			&& !ft_isdigit(map[i][j]))
 		{
 			if (fill_dir_tex(parse, map[i], j) == ERR)
-				return (print_err(parse->imap.path, "invalid texture", FAILURE));
+				return (print_err(parse->imap.path, "bad texture", FAILURE));
 			return (BR);
 		}
 		else
@@ -100,7 +100,7 @@ static int	ignore_spaces(t_parse *parse, char **map, int i, int j)
 	else if (ft_isdigit(map[i][j]))
 	{
 		if (create_map(parse, map, i) == FAILURE)
-			return (print_err(parse->imap.path, "Wrong map description", FAILURE));
+			return (print_err(parse->imap.path, "bad map descr", FAILURE));
 		return (SUCCESS);
 	}
 	return (CONTINUE);

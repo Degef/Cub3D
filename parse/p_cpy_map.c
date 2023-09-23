@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_cpy_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 18:23:57 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 15:55:10 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/23 18:36:13 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,6 @@ static int	fill_map_tab(t_imap *mapinfo, char **map_tab, int index)
 			j++;
 		}
 		map_tab[i][j] = '\0';
-		// while (j < mapinfo->width)
-		// 	map_tab[i][j++] = '\0';
-		printf("l = [%s]\n", map_tab[i]);
 		i++;
 		index++;
 	}
@@ -108,11 +105,11 @@ static int	fill_map_tab(t_imap *mapinfo, char **map_tab, int index)
 // 		return (FAILURE);
 // 	return (SUCCESS);
 // }
+	// if (get_map_info(parse, file, i) == FAILURE)
+	// 	return (FAILURE);
 
 int	create_map(t_parse *parse, char **file, int i)
 {
-	// if (get_map_info(parse, file, i) == FAILURE)
-	// 	return (FAILURE);
 	parse->imap.height = count_map_lines(parse, file, i);
 	parse->map = malloc(sizeof(char *) * (parse->imap.height + 1));
 	if (!parse->map)

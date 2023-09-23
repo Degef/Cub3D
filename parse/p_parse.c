@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_parse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:18:22 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/22 20:09:39 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/23 18:17:12 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,11 @@ int	ft_parse(t_parse *parse, char *path)
 	parse_map_file(path, parse);
 	initialize_parse_vars(parse);
 	if (get_file(parse, parse->imap.file) == 1)
-	{
-		// free parse here
-		return (0);
-	}
+		return (free_double_array(&parse->imap.file), 0);
 	if (check_map_ifvalid(parse, parse->map) == FAILURE)
-		return (0);
+		return (free_parser(parse), 0);
 	if (check_texture(parse) == FAILURE)
-	{
-			// free parse here
-		return (0);
-	}
+		return (free_parser(parse), 0);
 	duplicate_parse(parse);
 	return (1);
 }

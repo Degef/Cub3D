@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/23 15:19:19 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/23 18:29:55 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ typedef struct s_parse
 	size_t			row;
 	int				*floor;
 	int				*ceiling;
-	unsigned long	hex_floor;
-	unsigned long	hex_ceiling;
 	char			pdir;
 	t_imap			imap;
 }				t_parse;
@@ -201,6 +199,7 @@ typedef struct s_data
 }				t_data;
 
 //parsing
+void	free_parser(t_parse *parse);
 void	free_memory(t_parse *parse, t_data *data);
 void	free_double_array(char ***str);
 void	free_double_array2(unsigned int ***str);
@@ -222,7 +221,6 @@ int		create_map(t_parse *parse, char **file, int i);
 // size_t	find_biggest_len(t_imap *map, int i);
 void	initialize_parse_vars(t_parse *parse);
 void	duplicate_parse(t_parse *parse);
-
 
 //execution
 int		start_ray_casting(t_data *data, t_ray *ray);

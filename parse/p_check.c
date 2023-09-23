@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_check.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:05:03 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 15:51:11 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/23 18:07:13 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,14 @@ static int	check_top_or_bottom(char **map_tab, int i, int j)
 	{
 		if (map_tab[i][j] != '1')
 		{
-			printf("failure is [%d][%d] = %ul\n", i, j, (unsigned char)map_tab[i][j] );
+			printf("failure is [%d][%d]\n", i, j);
 			return (FAILURE);
 		}
 		j++;
 	}
-	printf("not failure\n");
 	if (i != 0)
 		return (check_buttom(map_tab, i, j));
 	return (check_top(map_tab, i, j));
-	// return (SUCCESS);
 }
 
 int	check_map_sides(t_imap *map, char **map_tab)

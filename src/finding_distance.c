@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:33:16 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/20 18:51:01 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 18:20:07 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	find_horizontal_intercept(t_ray *ray, char **map)
 	x_offset = 0.0;
 	y_offset = 0.0;
 	ray->h_distance = 100000;
-
 	if (sin(ray->angle) > 0)
 	{
 		ray->y_intercept = (((int)ray->y >> 6) << 6) - 0.0001;

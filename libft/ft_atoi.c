@@ -29,7 +29,7 @@ long	ft_atoi(const char *nptr)
 		if (nptr[i] == '-')
 			sign = -1;
 		i++;
-	}	
+	}
 	while (nptr[i] != '\0' && nptr[i] >= '0' && nptr[i] <= '9')
 		result = (result * 10) + (nptr[i++] - '0');
 	if (nptr[i] != '\0' && !(nptr[i] >= '0' && nptr[i] <= '9'))
@@ -38,7 +38,6 @@ long	ft_atoi(const char *nptr)
 }
 
 // #include <stdio.h>
-
 // int main()
 // {
 // 	char *str ="-2147483649";

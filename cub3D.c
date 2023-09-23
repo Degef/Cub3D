@@ -6,11 +6,11 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:57:28 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/22 21:16:39 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 18:15:30 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "./includes/cub3D.h"
 
 int	is_cubfile(char *file)
 {
@@ -77,13 +77,7 @@ int	main(int argc, char **argv)
 	if (!is_cubfile(argv[1]))
 		return (printf("Error! map is not .cub file\n"), 1);
 	if (!ft_parse(&parse, argv[1])) 
-	{
 		return (EXIT_FAILURE);
-	}
-	// if (!read_map(&parse, argv[1]))
-	// 	return (1);
-	// if (!parse_map(&parse))
-	// 	return (free_memory(&parse, &data), 1);
 	data.parse = &parse;
 	if (!start_game(&data))
 		return (free_memory(&parse, &data), 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_texture.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:24:26 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/22 19:50:51 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/23 18:28:44 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	check_texture(t_parse *parse)
 		|| check_valid_rgb(parse->floor) == FAILURE
 		|| check_valid_rgb(parse->ceiling) == FAILURE)
 		return (FAILURE);
-	parse->hex_floor = convert_rgb_to_hex(parse->floor);
-	parse->hex_ceiling = convert_rgb_to_hex(parse->ceiling);
+	parse->floor_color = convert_rgb_to_hex(parse->floor);
+	parse->ceil_color = convert_rgb_to_hex(parse->ceiling);
 	return (SUCCESS);
 }
