@@ -1,9 +1,9 @@
-NO ./textures/1.xpm
+                                         NO ./textures/dark1.xpm
 SO ./textures/dark2.xpm
 WE ./textures/dark1.xpm
 EA ./textures/dark2.xpm
 
-F 0, 0, 0
+F 128, 128, 128
 C 0, 0, 0
 
 1111111111111

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/23 18:29:55 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 21:43:47 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # include <math.h>
 # include "../mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
-
 
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_RELEASE	3
@@ -214,7 +213,7 @@ int		fill_color_textures(t_parse *parse, char *line, int j);
 int		check_map_ifvalid(t_parse *parse, char **map);
 int		check_mapfile(char *arg, bool cub);
 int		check_texture(t_parse *parse);
-int		get_file(t_parse *parse, char **map);
+int		get_map(t_parse *parse, char **map);
 int		check_map_elements(t_parse *parse, char **map_tab);
 int		check_map_is_at_the_end(t_imap *map);
 int		create_map(t_parse *parse, char **file, int i);

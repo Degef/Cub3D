@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:57:28 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/23 18:15:30 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 21:41:50 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	start_game(t_data *data)
 	mlx_hook(data->window.win, X_EVENT_EXIT, 1L << 17, &endgame, data);
 	mlx_loop_hook(data->window.mlx, &main_loop, data);
 	mlx_loop(data->window.mlx);
+	(void) data;
 	return (1);
 }
 
@@ -74,8 +75,6 @@ int	main(int argc, char **argv)
 
 	if (argc < 2 || argc > 2)
 		return (printf("Wrong input. Usage (./Cub3d ./map/map.cub)\n"), 1);
-	if (!is_cubfile(argv[1]))
-		return (printf("Error! map is not .cub file\n"), 1);
 	if (!ft_parse(&parse, argv[1])) 
 		return (EXIT_FAILURE);
 	data.parse = &parse;

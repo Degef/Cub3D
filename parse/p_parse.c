@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_parse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:18:22 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 18:17:12 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 21:43:47 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,13 @@ int	ft_parse(t_parse *parse, char *path)
 	parse->pdir = '\0';
 	initialize_imap(&parse->imap);
 	parse_map_file(path, parse);
+	if (parse->imap.file == NULL)
+		return (SUCCESS);
 	initialize_parse_vars(parse);
-	if (get_file(parse, parse->imap.file) == 1)
+	if (get_map(parse, parse->imap.file) == 1)
 		return (free_double_array(&parse->imap.file), 0);
 	if (check_map_ifvalid(parse, parse->map) == FAILURE)
-		return (free_parser(parse), 0);
+		return (free_parser(parse), 0); 
 	if (check_texture(parse) == FAILURE)
 		return (free_parser(parse), 0);
 	duplicate_parse(parse);

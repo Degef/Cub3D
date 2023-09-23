@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_check.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:05:03 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 18:07:13 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 21:34:22 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int	check_map_ifvalid(t_parse *parse, char **map)
 		return (print_err(parse->imap.path, "ERR_MAP_TOO_SMALL", FAILURE));
 	if (check_map_elements(parse, map) == FAILURE)
 		return (FAILURE);
+	if (parse->pdir == '0' && parse->map != NULL)
+		return (print_err(NULL, "NO_PLAYER_FOUND_ON_THE_FIELD", FAILURE));
 	if (check_map_is_at_the_end(&parse->imap) == FAILURE)
 		return (print_err(parse->imap.path, "ERR_MAP_LAST", FAILURE));
 	return (SUCCESS);

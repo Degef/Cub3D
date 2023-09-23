@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:46:35 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 18:26:07 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 21:37:49 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,11 @@ void	parse_map_file(char *path, t_parse *parse)
 	col = 0;
 	parse->imap.line_count = get_line_num(path);
 	parse->imap.path = path;
+	if (parse->imap.line_count == 0)
+		return ((void)(print_err(NULL, "EMPTY_MAP_FILE", 0)));
 	parse->imap.file = ft_calloc(parse->imap.line_count + 1, sizeof(char *));
 	if (!(parse->imap.file))
-	{
-		print_err(NULL, "Couldn't allocate memory", 0);
-		return ;
-	}
+		return ((void)(print_err(NULL, "Couldn't allocate memory", 0)));
 	parse->imap.fd = open(path, O_RDONLY);
 	if (parse->imap.fd < 0)
 		print_err(path, strerror(errno), 1);

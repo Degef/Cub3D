@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_map_utilis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:02:51 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 18:25:13 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 21:43:47 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static int	ignore_spaces(t_parse *parse, char **map, int i, int j)
 	return (CONTINUE);
 }
 
-int	get_file(t_parse *parse, char **map)
+int	get_map(t_parse *parse, char **map)
 {
 	int	i;
 	int	j;

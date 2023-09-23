@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_cpy_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 18:23:57 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 18:36:13 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 20:03:28 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ static int	fill_map_tab(t_imap *mapinfo, char **map_tab, int index)
 int	create_map(t_parse *parse, char **file, int i)
 {
 	parse->imap.height = count_map_lines(parse, file, i);
+	if (parse->imap.height == 0)
+		return (print_err(NULL, "NO_MAP_FOUND", FAILURE));
 	parse->map = malloc(sizeof(char *) * (parse->imap.height + 1));
 	if (!parse->map)
 		return (print_err(NULL, "Could not allocate memory", FAILURE));

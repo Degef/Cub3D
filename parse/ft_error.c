@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:26:36 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 18:06:03 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 20:13:23 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,18 @@ int	print_err_val(int detail, char *str, int code)
 void	free_parser(t_parse *parse)
 {
 	free_double_array(&parse->imap.file);
-	free_double_array(&parse->map);
-	free(parse->no_text);
-	free(parse->so_text);
-	free(parse->we_text);
-	free(parse->ea_text);
-	free(parse->ceiling);
-	free(parse->floor);
+	if (parse->map != NULL)
+		free_double_array(&parse->map);
+	if (parse->no_text != NULL)
+		free(parse->no_text);
+	if (parse->so_text != NULL)
+		free(parse->so_text);
+	if (parse->we_text != NULL)
+		free(parse->we_text);
+	if (parse->ea_text != NULL)
+		free(parse->ea_text);
+	if (parse->ceiling != NULL)
+		free(parse->ceiling);
+	if (parse->floor != NULL)
+		free(parse->floor);
 }
