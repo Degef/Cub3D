@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:46:35 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/22 22:46:01 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 14:25:56 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	dup_map_file(int row, int column, int i, t_parse *parse)
 			print_err(NULL, "Couldn't allocate memory", 0);
 			return (void_free_arr((void **)parse->imap.file));
 		}
-		while (line[i] != '\0')
+		while (line[i] != '\n' && line[i] != '\0')
 			parse->imap.file[row][column++] = line[i++];
 		parse->imap.file[row++][column] = '\0';
 		column = 0;
