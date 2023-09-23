@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/22 22:48:44 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/23 15:19:19 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,7 @@ int		get_file(t_parse *parse, char **map);
 int		check_map_elements(t_parse *parse, char **map_tab);
 int		check_map_is_at_the_end(t_imap *map);
 int		create_map(t_parse *parse, char **file, int i);
-size_t	find_biggest_len(t_imap *map, int i);
+// size_t	find_biggest_len(t_imap *map, int i);
 void	initialize_parse_vars(t_parse *parse);
 void	duplicate_parse(t_parse *parse);
 

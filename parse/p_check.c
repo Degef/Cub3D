@@ -6,7 +6,7 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:05:03 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/22 19:11:55 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/23 15:51:11 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,17 @@ static int	check_top_or_bottom(char **map_tab, int i, int j)
 	while (map_tab[i][j])
 	{
 		if (map_tab[i][j] != '1')
+		{
+			printf("failure is [%d][%d] = %ul\n", i, j, (unsigned char)map_tab[i][j] );
 			return (FAILURE);
+		}
 		j++;
 	}
+	printf("not failure\n");
 	if (i != 0)
 		return (check_buttom(map_tab, i, j));
 	return (check_top(map_tab, i, j));
-	return (SUCCESS);
+	// return (SUCCESS);
 }
 
 int	check_map_sides(t_imap *map, char **map_tab)
@@ -66,7 +70,9 @@ int	check_map_sides(t_imap *map, char **map_tab)
 	{
 		j = ft_strlen(map_tab[i]) - 1;
 		if (map_tab[i][j] != '1')
+		{
 			return (FAILURE);
+		}
 		i++;
 	}
 	if (check_top_or_bottom(map_tab, i, 0) == FAILURE)
