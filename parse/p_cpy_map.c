@@ -6,7 +6,7 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 18:23:57 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 20:03:28 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 11:35:26 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	count_map_lines(t_parse *parse, char **file, int i)
 		while (file[i][j] == ' ' || file[i][j] == '\t' || file[i][j] == '\r'
 		|| file[i][j] == '\v' || file[i][j] == '\f')
 			j++;
-		if (file[i][j] != '1')
+		if (file[i][j] != '1' && file[i][j] != '0')
 			break ;
 		i++;
 	}
@@ -95,19 +95,6 @@ static int	fill_map_tab(t_imap *mapinfo, char **map_tab, int index)
 	return (SUCCESS);
 }
 
-// static int	get_map_info(t_parse *parse, char **file, int i)
-// {
-// 	parse->imap.height = count_map_lines(parse, file, i);
-// 	parse->map = malloc(sizeof(char *) * (parse->imap.height + 1));
-// 	if (!parse->map)
-// 		return (print_err(NULL, "Could not allocate memory", FAILURE));
-// 	if (fill_map_tab(&parse->imap, parse->map, i) == FAILURE)
-// 		return (FAILURE);
-// 	return (SUCCESS);
-// }
-	// if (get_map_info(parse, file, i) == FAILURE)
-	// 	return (FAILURE);
-
 int	create_map(t_parse *parse, char **file, int i)
 {
 	parse->imap.height = count_map_lines(parse, file, i);
@@ -117,6 +104,8 @@ int	create_map(t_parse *parse, char **file, int i)
 	if (!parse->map)
 		return (print_err(NULL, "Could not allocate memory", FAILURE));
 	if (fill_map_tab(&parse->imap, parse->map, i) == FAILURE)
+		return (FAILURE);
+	if (check_wall_elements(parse, -1, -1, 0) == FAILURE)
 		return (FAILURE);
 	change_space_into_wall(parse);
 	return (SUCCESS);

@@ -6,25 +6,25 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:02:51 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 21:43:47 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 12:10:54 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-// size_t	find_biggest_len(t_imap *map, int i)
-// {
-// 	size_t	biggest_len;
+int	is_start_zero(char **map, int j)
+{
+	int	i;
 
-// 	biggest_len = ft_strlen(map->file[i]);
-// 	while (map->file[i])
-// 	{
-// 		if (ft_strlen(map->file[i]) > biggest_len)
-// 			biggest_len = ft_strlen(map->file[i]);
-// 		i++;
-// 	}
-// 	return (biggest_len);
-// }
+	i = 0;
+	while (map[j])
+	{
+		if (map[j][i] == '1' || map[j][i] == '0')
+			return (i);
+		i++;
+	}
+	return (i);
+}
 
 int	check_map_is_at_the_end(t_imap *map)
 {

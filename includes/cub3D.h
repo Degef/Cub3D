@@ -6,7 +6,7 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/23 21:43:47 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 12:02:08 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # include <math.h>
 # include "../mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
+
+#define WALL_ERR "MAP_NOT_SURROUNDED_BY_WALLS"
 
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_RELEASE	3
@@ -217,6 +219,9 @@ int		get_map(t_parse *parse, char **map);
 int		check_map_elements(t_parse *parse, char **map_tab);
 int		check_map_is_at_the_end(t_imap *map);
 int		create_map(t_parse *parse, char **file, int i);
+int		check_wall_elements(t_parse *p, int j, int i, int start);
+int		is_start_zero(char **map, int j);
+int		check_front(char **map, int j, int i);
 // size_t	find_biggest_len(t_imap *map, int i);
 void	initialize_parse_vars(t_parse *parse);
 void	duplicate_parse(t_parse *parse);

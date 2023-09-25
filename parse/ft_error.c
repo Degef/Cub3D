@@ -6,11 +6,22 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:26:36 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 20:13:23 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 12:10:50 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+int	check_front(char **map, int j, int i)
+{
+	while (i >= 0)
+	{
+		if (map[j][i] == '1')
+			return (1);
+		i--;
+	}
+	return (0);
+}
 
 int	print_err(char *info, char *str, int code)
 {
