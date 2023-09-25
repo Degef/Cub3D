@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_wall.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 11:33:52 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/25 16:35:50 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/25 16:51:38 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ static int	check_walls_2(t_parse *parse, char **map, int i, int j)
 {
 	if (j + 1 >= 0 && j + 1 < parse->imap.height)
 	{
+		 printf("i = %d, j = %d, [%c]\n", i, j,parse->map[j][i]);
 		if ((i - 1 >= 0 && i - 1 < (int)ft_strlen(map[j + 1])) \
-			&& (map[j + 1][i - 1] == '0') && j != 0)
+			&& (map[j + 1][i - 1] == '0'))
 			return (print_err(NULL, WALL_ERR, FAILURE), FAILURE);
 		if ((i + 1 >= 0 && i + 1 < (int)ft_strlen(map[j + 1])) \
 			&& (map[j + 1][i + 1] == '0') && (map[j][i + 1] != '1'))
