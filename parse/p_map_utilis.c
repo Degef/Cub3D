@@ -6,7 +6,7 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:02:51 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/25 12:10:54 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 15:12:39 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static int	ignore_spaces(t_parse *parse, char **map, int i, int j)
 	else if (ft_isdigit(map[i][j]))
 	{
 		if (create_map(parse, map, i) == FAILURE)
-			return (print_err(parse->imap.path, "bad map descr", FAILURE));
+			return (FAILURE);
 		return (SUCCESS);
 	}
 	return (CONTINUE);

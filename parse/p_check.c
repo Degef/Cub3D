@@ -6,33 +6,11 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:05:03 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/25 11:27:44 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 15:25:32 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-static int	check_buttom(char **map, int i, int j)
-{
-	while (map[i - 1][j])
-	{
-		if (map[i - 1][j] != '1')
-			return (FAILURE);
-		j++;
-	}
-	return (SUCCESS);
-}
-
-static int	check_top(char **map, int i, int j)
-{
-	while (map[i + 1][j])
-	{
-		if (map[i + 1][j] != '1')
-			return (FAILURE);
-		j++;
-	}
-	return (SUCCESS);
-}
 
 static int	check_top_or_bottom(char **map_tab, int i, int j)
 {
@@ -44,16 +22,14 @@ static int	check_top_or_bottom(char **map_tab, int i, int j)
 		j++;
 	while (map_tab[i][j])
 	{
-		if (map_tab[i][j] != '1')
+		if (map_tab[i][j] == '0')
 		{
 			printf("failure is [%d][%d]\n", i, j);
 			return (FAILURE);
 		}
 		j++;
 	}
-	if (i != 0)
-		return (check_buttom(map_tab, i, j));
-	return (check_top(map_tab, i, j));
+	return (SUCCESS);
 }
 
 int	check_map_sides(t_imap *map, char **map_tab)

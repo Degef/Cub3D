@@ -6,7 +6,7 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/25 12:02:08 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:44:46 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,7 @@ int		create_map(t_parse *parse, char **file, int i);
 int		check_wall_elements(t_parse *p, int j, int i, int start);
 int		is_start_zero(char **map, int j);
 int		check_front(char **map, int j, int i);
+int		check_wall_elements_2(t_parse *p, int j, int i, int start);
 // size_t	find_biggest_len(t_imap *map, int i);
 void	initialize_parse_vars(t_parse *parse);
 void	duplicate_parse(t_parse *parse);

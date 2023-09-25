@@ -6,7 +6,7 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 18:23:57 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/25 11:35:26 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:33:46 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int	create_map(t_parse *parse, char **file, int i)
 	if (fill_map_tab(&parse->imap, parse->map, i) == FAILURE)
 		return (FAILURE);
 	if (check_wall_elements(parse, -1, -1, 0) == FAILURE)
+		return (FAILURE);
+	if (check_wall_elements_2(parse, -1, -1, 0) == FAILURE)
 		return (FAILURE);
 	change_space_into_wall(parse);
 	return (SUCCESS);

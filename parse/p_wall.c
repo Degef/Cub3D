@@ -6,7 +6,7 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 11:33:52 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/25 12:09:16 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 15:24:43 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	check_walls_1(t_parse *parse, char **map, int i, int j)
 	if (j + 1 >= 0 && j + 1 < parse->imap.height)
 	{
 		if ((i - 1 >= 0 && i - 1 < (int)ft_strlen(map[j + 1])) \
-			&& (map[j + 1][i - 1] == '0'))
+			&& (map[j + 1][i - 1] == '0') && j != 0)
 			return (print_err(NULL, WALL_ERR, FAILURE), FAILURE);
 		if ((i + 1 >= 0 && i + 1 < (int)ft_strlen(map[j + 1])) \
 			&& (map[j + 1][i + 1] == '0') && (map[j][i + 1] != '1'))
@@ -95,6 +95,13 @@ int	check_wall_elements(t_parse *p, int j, int i, int start)
 			if (p->map[j][i] == ' ' && ((j + 1 < p->imap.height && \
 			((st_idx(p->map, j + 1) > i || j == 0 || j == p->imap.height - 1 ||
 				st_idx(p->map, j + 1) < i) && !check_front(p->map, j, i)))))
+			{
+				if (check_walls(p, p->map, i, j) == FAILURE)
+					return (FAILURE);
+				if (check_walls_1(p, p->map, i, j) == FAILURE)
+					return (FAILURE);
+			}
+			else if (p->map[j][i] == ' ' && (j == p->imap.height - 1 || j == 0))
 			{
 				if (check_walls(p, p->map, i, j) == FAILURE)
 					return (FAILURE);
