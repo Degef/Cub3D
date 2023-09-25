@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_wall.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 11:33:52 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/25 15:24:43 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 16:35:50 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	st_idx(char **map, int j)
 	return (i);
 }
 
-static int	check_walls(t_parse *parse, char **map, int i, int j)
+static int	check_walls_1(t_parse *parse, char **map, int i, int j)
 {
 	if (j - 1 >= 0 && j - 1 < parse->imap.height)
 	{
@@ -50,7 +50,7 @@ static int	check_walls(t_parse *parse, char **map, int i, int j)
 	return (SUCCESS);
 }
 
-static int	check_walls_1(t_parse *parse, char **map, int i, int j)
+static int	check_walls_2(t_parse *parse, char **map, int i, int j)
 {
 	if (j + 1 >= 0 && j + 1 < parse->imap.height)
 	{
@@ -67,7 +67,7 @@ static int	check_walls_1(t_parse *parse, char **map, int i, int j)
 	return (SUCCESS);
 }
 
-static int	check_walls_2(t_parse *p, char **map, int i, int j)
+static int	check_walls_3(t_parse *p, char **map, int i, int j)
 {
 	if ((j - 1 >= 0 && j - 1 < p->imap.height) && \
 		(j + 1 >= 0 && j + 1 < p->imap.height))
@@ -82,38 +82,28 @@ static int	check_walls_2(t_parse *p, char **map, int i, int j)
 	return (SUCCESS);
 }
 
-int	check_wall_elements(t_parse *p, int j, int i, int start)
+int	check_walls(t_parse *p, int j, int i)
 {
-	while (++j < p->imap.height)
+	if (p->map[j][i] == ' ' && ((j + 1 < p->imap.height && \
+	((st_idx(p->map, j + 1) > i || j == 0 || j == p->imap.height - 1 ||
+		st_idx(p->map, j + 1) < i) && !check_front(p->map, j, i)))))
 	{
-		i = -1;
-		start = is_start_zero(p->map, j);
-		if (p->map[j][start] == '0')
-			return (print_err(NULL, WALL_ERR, FAILURE), FAILURE);
-		while (++i < p->imap.width)
-		{
-			if (p->map[j][i] == ' ' && ((j + 1 < p->imap.height && \
-			((st_idx(p->map, j + 1) > i || j == 0 || j == p->imap.height - 1 ||
-				st_idx(p->map, j + 1) < i) && !check_front(p->map, j, i)))))
-			{
-				if (check_walls(p, p->map, i, j) == FAILURE)
-					return (FAILURE);
-				if (check_walls_1(p, p->map, i, j) == FAILURE)
-					return (FAILURE);
-			}
-			else if (p->map[j][i] == ' ' && (j == p->imap.height - 1 || j == 0))
-			{
-				if (check_walls(p, p->map, i, j) == FAILURE)
-					return (FAILURE);
-				if (check_walls_1(p, p->map, i, j) == FAILURE)
-					return (FAILURE);
-			}
-			else if (i == (int)ft_strlen(p->map[j]) - 1)
-			{
-				if (check_walls_2(p, p->map, i, j) == FAILURE)
-					return (FAILURE);
-			}
-		}
+		if (check_walls_1(p, p->map, i, j) == FAILURE)
+			return (FAILURE);
+		if (check_walls_2(p, p->map, i, j) == FAILURE)
+			return (FAILURE);
+	}
+	else if (p->map[j][i] == ' ' && (j == p->imap.height - 1 || j == 0))
+	{
+		if (check_walls_1(p, p->map, i, j) == FAILURE)
+			return (FAILURE);
+		if (check_walls_2(p, p->map, i, j) == FAILURE)
+			return (FAILURE);
+	}
+	else if (i == (int)ft_strlen(p->map[j]) - 1)
+	{
+		if (check_walls_3(p, p->map, i, j) == FAILURE)
+			return (FAILURE);
 	}
 	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/25 14:44:46 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 16:36:31 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,7 @@ int		check_wall_elements_2(t_parse *p, int j, int i, int start);
 // size_t	find_biggest_len(t_imap *map, int i);
 void	initialize_parse_vars(t_parse *parse);
 void	duplicate_parse(t_parse *parse);
+int		check_walls(t_parse *p, int j, int i);
 
 //execution
 int		start_ray_casting(t_data *data, t_ray *ray);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_wall_utilis.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:34:44 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/25 15:31:16 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 16:36:02 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,23 @@ int	check_wall_elements_2(t_parse *p, int j, int i, int start)
 		start = ft_strlen(p->map[j]) - 1;
 		if (check_from_back(p->map, j, start, p->imap.height) == 0)
 			return (print_err(NULL, WALL_ERR, FAILURE), FAILURE);
+	}
+	return (SUCCESS);
+}
+
+int	check_wall_elements(t_parse *p, int j, int i, int start)
+{
+	while (++j < p->imap.height)
+	{
+		i = -1;
+		start = is_start_zero(p->map, j);
+		if (p->map[j][start] == '0')
+			return (print_err(NULL, WALL_ERR, FAILURE), FAILURE);
+		while (++i < p->imap.width)
+		{
+			if (check_walls(p, j, i))
+				return (FAILURE);
+		}
 	}
 	return (SUCCESS);
 }
