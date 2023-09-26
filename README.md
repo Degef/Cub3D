@@ -41,6 +41,11 @@ To get started with Cub3D, follow these steps:
 3. Run the executable with a valid map as argument (./cub3D maps/cub.cub).
 4. Explore the captivating 3D world we've created using the controls mentioned above.
 
+## Demo
+
+https://github.com/Degef/Cub3D/assets/103037326/2c024edc-8f6f-4c43-b58d-e6edf2ffe8eb
+
+
 ## Contributions and Feedback
 
 We welcome contributions and feedback from the community. If you have ideas for improvements or want to report issues, please open an issue or submit a pull request. Your input is valuable and can help us make Cub3D even better!
