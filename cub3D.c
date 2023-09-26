@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:57:28 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/26 17:02:52 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/26 19:37:11 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	start_game(t_data *data)
 			&data->mini_map.line_length, &data->mini_map.endian);
 	if (!get_texture(data->parse, data))
 		return (0);
-	start_ray_casting(data, &data->ray);
+	cast_rays(data, &data->ray);
 	mlx_hook(data->window.win, X_EVENT_KEY_PRESS, 0, &keypress, data);
 	mlx_hook(data->window.win, X_EVENT_KEY_RELEASE, 0, &key_release, data);
 	mlx_hook(data->window.win, X_EVENT_EXIT, 1L << 17, &endgame, data);

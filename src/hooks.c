@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:13:25 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/26 16:54:27 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/26 19:37:11 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ int	main_loop(void *da)
 		rotate_left(data);
 	if (data->keys.right)
 		rotate_right(data);
-	start_ray_casting(data, &data->ray);
+	cast_rays(data, &data->ray);
 	return (0);
 }

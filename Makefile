@@ -24,7 +24,7 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(OBJS)
 # for MAC
 	$(MAKE) -C $(MLXMAC)
-	 $(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MacLinker) -o $(NAME) $(sanitize)
+	 $(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MacLinker) -o $(NAME)
 
 # for LINUX 
 # @$(MAKE) -C $(MLXLINUX)

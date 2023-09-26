@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:30:59 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/26 17:07:43 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/26 19:37:11 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ Then, it calls draw_ray to draw the rays for the mini map
 After finishing the loop, it calls draw_game to draw the game
 */ 
 
-int	start_ray_casting(t_data *data, t_ray *ray)
+int	cast_rays(t_data *data, t_ray *ray)
 {
 	int	i;
 	int	x_intercept;

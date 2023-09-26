@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/25 17:49:24 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/26 19:37:11 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define X_EVENT_KEY_RELEASE	3
 # define X_EVENT_EXIT			17
 
-# define WIN_W	720
-# define WIN_H	520
+# define WIN_W	832
+# define WIN_H	640
 # define STEP_SIZE  30.00
 # define FOV 60.00
 # define ROTATION_ANGLE 0.17
@@ -229,7 +229,7 @@ void	duplicate_parse(t_parse *parse);
 int		check_walls(t_parse *p, int j, int i);
 
 //execution
-int		start_ray_casting(t_data *data, t_ray *ray);
+int		cast_rays(t_data *data, t_ray *ray);
 int		put_pixels(t_data *data);
 int		keypress(int key, void *da);
 int		key_release(int key_code, void *da);
