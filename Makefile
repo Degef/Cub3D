@@ -36,7 +36,7 @@ $(LIBFT) :
 clean:
 	@$(RM) $(OBJS)
 	@make clean -sC ./libft
-	@make clean -sC ./mlx
+# @make clean -sC ./mlx
 
 fclean: clean
 	@$(RM) $(NAME)

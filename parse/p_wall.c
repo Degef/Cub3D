@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 11:33:52 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/25 17:10:29 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/26 17:09:31 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	check_walls_2(t_parse *parse, char **map, int i, int j)
 	if (j + 1 >= 0 && j + 1 < parse->imap.height)
 	{
 		if ((i - 1 >= 0 && i - 1 < (int)ft_strlen(map[j + 1])) \
-			&& (map[j + 1][i - 1] == '0'))
+			&& (map[j + 1][i - 1] == '0') && (map[j + 1][i] != '1'))
 			return (print_err(NULL, WALL_ERR, FAILURE), FAILURE);
 		if ((i + 1 >= 0 && i + 1 < (int)ft_strlen(map[j + 1])) \
 			&& (map[j + 1][i + 1] == '0') && (map[j][i + 1] != '1'))

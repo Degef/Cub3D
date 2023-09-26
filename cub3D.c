@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:57:28 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/25 16:18:50 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/26 17:02:52 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	free_memory(t_parse *parse, t_data *data)
 	(void)data;
 }
 
+
+//this function is called in main_loop
 int	start_game(t_data *data)
 {
 	init_attributes(data);

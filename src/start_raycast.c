@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:30:59 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/25 17:44:19 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/26 17:07:43 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,19 @@ void	start_initializers(t_data *data)
 	draw_mini_map(data, data->parse->map, data->parse->column * 8,
 		data->parse->row * 8);
 }
+
+/*
+This function is called in main_loop, the purpose of this function is to start
+the raycasting. First, it calls start_initializers to initialize the rays 
+and the buffer. Then, it loops through the width of the screen
+and calls find_horizontal_intercept and find_vertical_intercept to 
+find the intercepts of the rays Then, it calls select_ray to select the
+ray with the shortest distance
+Then, it calls fix_fish_eye to fix the fish eye effect
+Then, it calls find_draw_start_end to find the start and end of the rays
+Then, it calls draw_ray to draw the rays for the mini map
+After finishing the loop, it calls draw_game to draw the game
+*/ 
 
 int	start_ray_casting(t_data *data, t_ray *ray)
 {
