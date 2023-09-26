@@ -24,7 +24,7 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(OBJS)
 # for MAC
 	$(MAKE) -C $(MLXMAC)
-	 $(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MacLinker) -o $(NAME)
+	 $(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MacLinker) -o $(NAME) $(sanitize)
 
 # for LINUX 
 # @$(MAKE) -C $(MLXLINUX)
@@ -36,7 +36,7 @@ $(LIBFT) :
 clean:
 	@$(RM) $(OBJS)
 	@make clean -sC ./libft
-# @make clean -sC ./mlx
+	@make clean -sC ./mlx
 
 fclean: clean
 	@$(RM) $(NAME)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_check.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:05:03 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/25 15:25:32 by aandom           ###   ########.fr       */
+/*   Updated: 2023/09/25 17:18:05 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	check_top_or_bottom(char **map_tab, int i, int j)
 	{
 		if (map_tab[i][j] == '0')
 		{
-			printf("failure is [%d][%d]\n", i, j);
+			// printf("failure is [%d][%d]\n", i, j);
 			return (FAILURE);
 		}
 		j++;

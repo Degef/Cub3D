@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/25 16:36:31 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/25 17:49:24 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "../mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
 
-#define WALL_ERR "MAP_NOT_SURROUNDED_BY_WALLS"
+# define WALL_ERR "MAP_NOT_SURROUNDED_BY_WALLS"
 
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_RELEASE	3

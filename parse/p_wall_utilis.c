@@ -6,34 +6,41 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:34:44 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/25 16:36:02 by Degef            ###   ########.fr       */
+/*   Updated: 2023/09/25 17:16:09 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-int	check_from_back(char **map, int j, int end, int height)
+int	check_from_back2(char **map, int j, int end, int height)
 {
 	int	tmp;
 
+	if (j == 0 && end < (int)ft_strlen(map[j + 1]))
+	{
+		tmp = end;
+		while (map[j + 1][++tmp])
+			if (map[j + 1][tmp] == '0')
+				return (0);
+	}
+	else if (j == height - 1 && end < (int)ft_strlen(map[j - 1]))
+	{
+		tmp = end;
+		while (map[j - 1][++tmp])
+			if (map[j - 1][tmp] == '0')
+				return (0);
+	}
+	return (1);
+}
+
+int	check_from_back(char **map, int j, int end, int height)
+{
 	while (end > 0 && map[j][end])
 	{
 		if (map[j][end] == '1')
 		{
-			if (j == 0 && end < (int)ft_strlen(map[j + 1]))
-			{
-				tmp = end;
-				while (map[j + 1][++tmp])
-					if (map[j + 1][tmp] == '0')
-						return (0);
-			}
-			else if (j == height - 1 && end < (int)ft_strlen(map[j - 1]))
-			{
-				tmp = end;
-				while (map[j - 1][++tmp])
-					if (map[j - 1][tmp] == '0')
-						return (0);
-			}
+			if (check_from_back2(map, j, end, height) == 0)
+				return (0);
 			return (1);
 		}
 		else if (map[j][end] == '0')
