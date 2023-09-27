@@ -37,9 +37,10 @@ We've taken care to ensure robust error handling. Our project can gracefully han
 To get started with Cub3D, follow these steps:
 
 1. Clone this repository to your local machine.
-2. Compile the project by writing "make all" in the root of the project.
+2. Compile the project by writing "make all" at the root of the project.
 3. Run the executable with a valid map as argument (./cub3D maps/cub.cub).
 4. Explore the captivating 3D world we've created using the controls mentioned above.
+- Note: This will work in Mac and Linux environments only. 
 
 ## Demo
 
