@@ -6,11 +6,11 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:33:16 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/23 18:20:07 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/06 20:54:03 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 int	find_v_ray_wall_hit(t_ray *ray, char **map,
 		double x_offset, double y_offset)

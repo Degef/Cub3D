@@ -6,11 +6,11 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 15:32:32 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/22 16:01:39 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/06 20:53:34 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 void	init_vars(t_data *data, int x1, int y1, int *pos2)
 {

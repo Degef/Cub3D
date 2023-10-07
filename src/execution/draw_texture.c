@@ -6,11 +6,11 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:48:38 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/20 19:13:08 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/06 20:53:34 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 t_img	get_texture2(t_data *data, t_ray *ray)
 {

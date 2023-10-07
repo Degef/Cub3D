@@ -6,11 +6,11 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:13:25 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/26 19:37:11 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/06 20:53:34 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 static void	move_forward(t_data *data)
 {

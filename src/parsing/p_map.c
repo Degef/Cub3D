@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   p_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
+/*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:46:35 by aandom            #+#    #+#             */
-/*   Updated: 2023/09/23 21:37:49 by aandom           ###   ########.fr       */
+/*   Updated: 2023/10/06 20:53:34 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 static char	*substitute_tabs(char **line, char **new_line, int len, int j)
 {

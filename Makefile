@@ -1,42 +1,37 @@
-NAME        = cub3D
+NAME      = cub3D
+LIBFT     = ./libft/libft.a
+MLXMAC    = ./mlx/
+MLXLINUX  = ./mlx_linux/
 
-LIBFT       = ./libft/libft.a 
-MLXMAC		= ./mlx/
-MLXLINUX	= ./mlx_linux/
+SRC_PATH  = src/
+OBJ_PATH  = obj
+SRC_DIRS  = execution parsing
+SRC       = $(wildcard $(addprefix $(SRC_PATH), $(addsuffix /*.c, $(SRC_DIRS))))
+OBJS      = $(patsubst $(SRC_PATH)%.c,$(OBJ_PATH)/%.o,$(SRC))
 
-FILES 		= cub3D.c ./src/start_raycast.c ./src/hooks.c ./src/init.c  ./src/draw.c ./src/utils.c ./src/finding_distance.c \
-				./src/draw_texture.c ./src/hooks2.c ./parse/p_check.c ./parse/p_cpy_map.c ./parse/p_map.c ./parse/p_parse.c \
-				./parse/p_texture.c ./parse/p_text_utilis.c ./parse/p_map_utilis.c ./parse/ft_error.c \
-				./parse/p_init.c ./parse/parsing_utils.c ./parse/p_wall.c ./parse/p_wall_utilis.c ./src/minimap.c
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g
-sanitize    = -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
-RM          = rm -f
-LinLinker	= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-MacLinker	= -Lmlx -lmlx -framework OpenGL -framework AppKit
-OBJS		= $(FILES:.c=.o)
+CC        = cc
+CFLAGS    = -Wall -Wextra -Werror -g
+RM        = rm -rf
+MacLinker = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-all: $(NAME)
+all: $(OBJ_PATH) $(LIBFT) $(NAME)
 
-%.o : %.c
-	@cc $(CFLAGS) -Imlx -c $< -o $@
+$(OBJ_PATH)/%.o: $(SRC_PATH)%.c
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
-$(NAME): $(LIBFT) $(OBJS)
-# for MAC
+$(NAME): $(OBJS)
 	$(MAKE) -C $(MLXMAC)
-	 $(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MacLinker) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MacLinker) -o $(NAME)
 
-# for LINUX 
-# @$(MAKE) -C $(MLXLINUX)
-# @$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LinLinker) -o $(NAME)
-                                                         
-$(LIBFT) :
+$(LIBFT):
 	@make -sC ./libft
 
+$(OBJ_PATH):
+	mkdir -p $(addprefix $(OBJ_PATH)/, $(SRC_DIRS))
+
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJ_PATH)
 	@make clean -sC ./libft
-# @make clean -sC ./mlx
 
 fclean: clean
 	@$(RM) $(NAME)
