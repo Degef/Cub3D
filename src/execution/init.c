@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:55:16 by Degef             #+#    #+#             */
-/*   Updated: 2023/10/06 20:53:34 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/12 19:21:49 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	init_buffer(t_data *data)
 		j = 0;
 		while (j < WIN_W)
 		{
-			data->buffer[i][j] = 0;
+			data->buffer[i][j] = WHITE;
 			j++;
 		}
 		i++;

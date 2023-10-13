@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:13:14 by Degef             #+#    #+#             */
-/*   Updated: 2023/10/06 20:53:34 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/13 14:28:12 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_ceiling(unsigned int **buffer, int i, int k)
 		return (1);
 	while (--i > -1)
 	{
-		if (buffer[i][k] != 0)
+		if (buffer[i][k] != WHITE)
 			return (0);
 	}
 	return (1);
@@ -30,7 +30,7 @@ int	is_floor(unsigned int **buffer, int i, int k)
 		return (1);
 	while (++i < WIN_H)
 	{
-		if (buffer[i][k] != 0)
+		if (buffer[i][k] != WHITE)
 			return (0);
 	}
 	return (1);
@@ -38,12 +38,18 @@ int	is_floor(unsigned int **buffer, int i, int k)
 
 void	update_image(t_data *data, int j, int i)
 {
-	if (is_ceiling(data->buffer, i, j))
+	// if (is_ceiling(data->buffer, i, j))
+	// 	data->image.addr[i * WIN_W + j] = data->parse->ceil_color;
+	// else if (is_floor(data->buffer, i, j))
+	// 	data->image.addr[i * WIN_W + j] = data->parse->floor_color;
+	if (i < WIN_H / 2 && data->buffer[i][j] == WHITE)
 		data->image.addr[i * WIN_W + j] = data->parse->ceil_color;
-	else if (is_floor(data->buffer, i, j))
+	else if (i > WIN_H / 2 && data->buffer[i][j] == WHITE)
 		data->image.addr[i * WIN_W + j] = data->parse->floor_color;
 	else
 		data->image.addr[i * WIN_W + j] = data->buffer[i][j];
+	// else
+	// 	data->image.addr[i * WIN_W + j] = data->buffer[i][j];
 	if (((i > WIN_H / 2 - 8 && i < WIN_H / 2 - 3)
 			|| (i > WIN_H / 2 + 3 && i < WIN_H / 2 + 8))
 		&& j == WIN_W / 2)

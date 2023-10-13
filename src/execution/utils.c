@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 19:13:14 by Degef             #+#    #+#             */
-/*   Updated: 2023/10/06 20:53:34 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/12 19:17:50 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,13 @@ int	get_texture(t_parse *parse, t_data *data)
 			&data->we_img.t_width, &data->we_img.t_height);
 	data->ea_img.img = mlx_xpm_file_to_image(data->window.mlx, parse->ea_text,
 			&data->ea_img.t_width, &data->ea_img.t_height);
+	data->floor_img.img = mlx_xpm_file_to_image(data->window.mlx,
+			"./textures/floor.xpm", &data->floor_img.t_width,
+			&data->floor_img.t_height);
+	data->gun.img = mlx_xpm_file_to_image(data->window.mlx,
+			"./textures/gun.xpm", &data->gun.t_width, &data->gun.t_height);
 	if (!data->no_img.img || !data->so_img.img || !data->we_img.img 
-		|| !data->ea_img.img)
+		|| !data->ea_img.img || !data->floor_img.img)
 		return (printf("Error! Texture not found\n"), 0); 
 	data->no_img.addr = (int *)mlx_get_data_addr(data->no_img.img,
 			&data->no_img.bpp, &data->no_img.line_length, &data->no_img.endian);
@@ -52,6 +57,11 @@ int	get_texture(t_parse *parse, t_data *data)
 			&data->we_img.bpp, &data->we_img.line_length, &data->we_img.endian);
 	data->ea_img.addr = (int *)mlx_get_data_addr(data->ea_img.img,
 			&data->ea_img.bpp, &data->ea_img.line_length, &data->ea_img.endian);
+	data->floor_img.addr = (int *)mlx_get_data_addr(data->floor_img.img,
+			&data->floor_img.bpp, &data->floor_img.line_length,
+			&data->floor_img.endian);
+	data->gun.addr = (int *)mlx_get_data_addr(data->gun.img,
+			&data->gun.bpp, &data->gun.line_length, &data->gun.endian);
 	return (1);
 }
 

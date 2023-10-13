@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:48:38 by Degef             #+#    #+#             */
-/*   Updated: 2023/10/06 20:53:34 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/13 14:35:15 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	draw_wall(t_data *data, t_ray *ray, int x, int y)
 	tex_y = (int)tex_pos & (data->texture.t_height - 1);
 	while (y < ray->draw_end)
 	{
-		if ((y > -1 && y <= WIN_H) && (x > -1 && x <= WIN_W))
+		if ((y > -1 && y <= WIN_H) && (x > -1 && x <= WIN_W) && data->buffer[y][x] == WHITE) // the last condition is to avoid drawing over the gun
 			data->buffer[y][x] = data->texture.addr[(tex_y * 64) + (int)tex_x];
 		tex_pos += step;
 		tex_y = (int)tex_pos & (data->texture.t_height - 1);

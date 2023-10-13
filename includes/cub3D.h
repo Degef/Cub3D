@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/09/26 19:37:11 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/12 19:38:20 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,16 @@
 # define X_EVENT_KEY_RELEASE	3
 # define X_EVENT_EXIT			17
 
-# define WIN_W	832
-# define WIN_H	640
+# define WIN_W	640
+# define WIN_H	448
 # define STEP_SIZE  30.00
 # define FOV 60.00
 # define ROTATION_ANGLE 0.17
 # define PI 3.1415926535898
 # define CUBE_SIZE 64.00
+//colors
+# define BLACK 0x00000000
+# define WHITE 0x00FFFFFF
 
 // keys 
 # define ESC 53
@@ -196,7 +199,9 @@ typedef struct s_data
 	t_img			so_img;
 	t_img			we_img;
 	t_img			ea_img;
+	t_img		    floor_img;
 	t_draw_line		draw_line;
+	t_img			gun;
 }				t_data;
 
 //parsing

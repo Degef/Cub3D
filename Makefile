@@ -13,6 +13,7 @@ CC        = cc
 CFLAGS    = -Wall -Wextra -Werror -g
 RM        = rm -rf
 MacLinker = -Lmlx -lmlx -framework OpenGL -framework AppKit
+sanitize  = -fsanitize=address -g3 -fno-omit-frame-pointer 
 
 all: $(OBJ_PATH) $(LIBFT) $(NAME)
 

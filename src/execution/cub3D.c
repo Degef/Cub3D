@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:57:28 by Degef             #+#    #+#             */
-/*   Updated: 2023/10/06 20:53:50 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/12 18:55:09 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	free_memory(t_parse *parse, t_data *data)
 		free_double_array(&parse->map);
 	(void)data;
 }
-
 
 //this function is called in main_loop
 int	start_game(t_data *data)
