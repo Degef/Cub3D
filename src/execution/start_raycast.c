@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:30:59 by Degef             #+#    #+#             */
-/*   Updated: 2023/10/13 14:38:31 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/16 18:11:45 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void put_gun(t_data *data)
 	while (++y < WIN_H)
 	{
 		int x = 200;
-		while (++x < WIN_W)
+		while (++x < WIN_W - 70)
 		{
-			data->buffer[y][x] = data->gun.addr[i * WIN_W + x];
+			data->buffer[y][x + 70] = data->gun.addr[i * WIN_W + x];
 		}
 		i++;
 	}	

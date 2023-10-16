@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:14:54 by Degef             #+#    #+#             */
-/*   Updated: 2023/10/12 19:38:20 by Degef            ###   ########.fr       */
+/*   Updated: 2023/10/16 18:15:52 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@
 
 # define WIN_W	640
 # define WIN_H	448
-# define STEP_SIZE  30.00
+# define STEP_SIZE  15.00
 # define FOV 60.00
-# define ROTATION_ANGLE 0.17
+# define ROTATION_ANGLE 0.08
 # define PI 3.1415926535898
 # define CUBE_SIZE 64.00
 //colors
