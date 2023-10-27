@@ -44,7 +44,7 @@ To get started with Cub3D, follow these steps:
 
 ## Demo
 
-[![Demo Video](https://img.youtube.com/vi/qmxmi8o191A/0.jpg)](https://www.youtube.com/watch?v=qmxmi8o191A)
+[![Demo Video](https://img.youtube.com/vi/qmxmi8o191A/0.jpg)](https://www.youtube.com/watch?v=qmxmi8o191A?autoplay=1)
 
 
 ## Contributions and Feedback
