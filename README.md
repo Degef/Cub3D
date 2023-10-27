@@ -44,7 +44,7 @@ To get started with Cub3D, follow these steps:
 
 ## Demo
 
-https://github.com/Degef/Cub3D/assets/103037326/2c024edc-8f6f-4c43-b58d-e6edf2ffe8eb
+[![Demo Video](https://img.youtube.com/vi/qmxmi8o191A/0.jpg)](https://www.youtube.com/watch?v=qmxmi8o191A)
 
 
 ## Contributions and Feedback
