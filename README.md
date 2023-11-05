@@ -1,5 +1,10 @@
 # Cub3D Project
-![recording1](https://github.com/Degef/Cub3D/assets/103037326/3b14ec2a-c8d2-4b4c-a07f-7a4b7f757125)
+
+<p align="center">
+  <img src="https://github.com/Degef/Cub3D/assets/103037326/3b14ec2a-c8d2-4b4c-a07f-7a4b7f757125" alt="recording1" />
+</p>
+
+<!-- ![recording1](https://github.com/Degef/Cub3D/assets/103037326/3b14ec2a-c8d2-4b4c-a07f-7a4b7f757125) -->
 
 ## Overview
 
