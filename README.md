@@ -1,6 +1,7 @@
 # Cub3D Project
 ![recording1](https://github.com/Degef/Cub3D/assets/103037326/3b14ec2a-c8d2-4b4c-a07f-7a4b7f757125)
 
+
 ## Overview
 
 Welcome to the Cub3D project! This project was successfully completed by me and Alexander as part of our coursework at 42 Abu Dhabi. Cub3D is an exciting venture into the world of 3D graphics, built upon the fascinating ray casting technique. In this project, we convert a 2D array map into a mesmerizing 3D world.
