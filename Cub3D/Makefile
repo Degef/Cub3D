@@ -42,7 +42,7 @@ re: fclean all
 
 push: fclean
 	git add .
-	git commit -m "Updated on $(shell date +'%Y-%m-%d %H:%M:%S') by $(shell whoami)"
+	git commit -m "Updated on $(shell date +'%Y-%m-%d %H:%M:%S') by $(USER)"
 	git push -u origin master
 
 .PHONY: all clean fclean re
