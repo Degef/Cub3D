@@ -33,6 +33,8 @@ $(OBJ_PATH):
 clean:
 	@$(RM) $(OBJ_PATH)
 	@make clean -sC ./libft
+	@make clean -sC ./mlx
+	@make clean -sC ./mlx_linux
 
 fclean: clean
 	@$(RM) $(NAME)
