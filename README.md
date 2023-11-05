@@ -4,9 +4,6 @@
   <img src="https://github.com/Degef/Cub3D/assets/103037326/3b14ec2a-c8d2-4b4c-a07f-7a4b7f757125" alt="recording1" />
 </p>
 
-<!-- ![recording1](https://github.com/Degef/Cub3D/assets/103037326/3b14ec2a-c8d2-4b4c-a07f-7a4b7f757125) -->
-
-
 ## Overview
 
 Welcome to the Cub3D project! This project was successfully completed by me and Alexander as part of our coursework at 42 Abu Dhabi. Cub3D is an exciting venture into the world of 3D graphics, built upon the fascinating ray casting technique. In this project, we convert a 2D array map into a mesmerizing 3D world.
@@ -42,7 +39,7 @@ We've taken care to ensure robust error handling. Our project can gracefully han
 ## Getting Started
 
 To get started with Cub3D, follow these steps:
-
+Note: This will work in a Mac or Linux environment only. Also use mlx_linux if you are trying this in linux environment. you can do this by changing the "mlx" in the Makefile to "mlx_linux". 
 1. Clone this repository to your local machine.
 2. Compile the project by writing "make all" at the root of the project.
 3. Run the executable with a valid map as argument (./cub3D maps/cub.cub).
