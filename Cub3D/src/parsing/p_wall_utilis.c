@@ -6,7 +6,7 @@
 /*   By: Degef <dsium@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:34:44 by aandom            #+#    #+#             */
-/*   Updated: 2023/10/06 20:53:34 by Degef            ###   ########.fr       */
+/*   Updated: 2023/11/05 17:18:06 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	check_from_back(char **map, int j, int end, int height)
 
 int	check_wall_elements_2(t_parse *p, int j, int i, int start)
 {
+	(void) i;
 	while (++j < p->imap.height)
 	{
 		i = -1;
